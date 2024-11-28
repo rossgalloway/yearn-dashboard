@@ -1,0 +1,512 @@
+directive @cacheControl(maxAge: Int, scope: CacheControlScope, inheritMaxAge: Boolean) on FIELD_DEFINITION | OBJECT | INTERFACE | UNION
+
+"""Exposes a URL that specifies the behavior of this scalar."""
+directive @specifiedBy(
+  """The URL that specifies the behavior of this scalar."""
+  url: String!
+) on SCALAR
+
+type Accountant {
+  chainId: Int!
+  address: String!
+  feeManager: String!
+  feeRecipient: String!
+  futureFeeManager: String
+  managementFeeThreshold: BigInt
+  performanceFeeThreshold: BigInt
+  maxLoss: BigInt
+  vaultManager: String
+  vaults: [String]
+}
+
+type AccountRole {
+  chainId: Int!
+  address: String!
+  account: String!
+  roleMask: BigInt!
+}
+
+type ApetaxStat {
+  stealth: Int!
+  new: Int!
+  active: Int!
+  withdraw: Int!
+}
+
+type Apr {
+  gross: Float
+  net: Float
+}
+
+type Apy {
+  net: Float
+  weeklyNet: Float
+  monthlyNet: Float
+  inceptionNet: Float
+  grossApr: Float
+  blockNumber: String!
+  blockTime: String!
+}
+
+"""BigInt override"""
+scalar BigInt
+
+enum CacheControlScope {
+  PUBLIC
+  PRIVATE
+}
+
+type DbInfo {
+  clients: Int!
+  databaseSize: BigInt!
+  indexHitRate: Float!
+  cacheHitRate: Float!
+}
+
+type Debt {
+  strategy: String
+  performanceFee: BigInt
+  activation: BigInt
+  debtRatio: BigInt
+  minDebtPerHarvest: BigInt
+  maxDebtPerHarvest: BigInt
+  lastReport: BigInt
+  totalDebt: BigInt
+  totalDebtUsd: Float
+  totalGain: BigInt
+  totalGainUsd: Float
+  totalLoss: BigInt
+  totalLossUsd: Float
+  currentDebt: BigInt
+  currentDebtUsd: Float
+  maxDebt: BigInt
+  maxDebtUsd: Float
+  targetDebtRatio: Float
+  maxDebtRatio: Float
+}
+
+type Erc20 {
+  chainId: Int
+  address: String
+  symbol: String
+  name: String
+  decimals: Int
+}
+
+type Fees {
+  managementFee: Float
+  performanceFee: Float
+}
+
+type IngestCpu {
+  usage: Float!
+}
+
+type IngestInfo {
+  cpu: IngestCpu!
+  memory: IngestMemory!
+}
+
+type IngestMemory {
+  total: BigInt!
+  used: BigInt!
+}
+
+type LatestBlock {
+  chainId: Int!
+  blockNumber: BigInt!
+  blockTime: BigInt!
+}
+
+type LenderStatus {
+  name: String
+  assets: BigInt
+  rate: BigInt
+  address: String
+}
+
+type Monitor {
+  queues: [QueueStatus]
+  redis: RedisInfo!
+  db: DbInfo!
+  ingest: IngestInfo!
+  indexStatsJson: String!
+}
+
+type NetworkStat {
+  chainId: Int!
+  count: Int!
+}
+
+type Output {
+  chainId: Int!
+  address: String!
+  label: String!
+  component: String
+  value: Float!
+  period: String!
+  time: BigInt
+}
+
+type Price {
+  chainId: Int!
+  address: String!
+  priceUsd: Float!
+  priceSource: String!
+  blockNumber: BigInt!
+  timestamp: BigInt!
+}
+
+type Query {
+  bananas: String
+  latestBlocks(chainId: Int): [LatestBlock]
+  monitor: Monitor
+  vaults(chainId: Int, apiVersion: String, erc4626: Boolean): [Vault]
+  vault(chainId: Int, address: String): Vault
+  vaultAccounts(chainId: Int, vault: String): [AccountRole]
+  vaultReports(chainId: Int, address: String): [VaultReport]
+  vaultStrategies(chainId: Int, vault: String): [Strategy]
+  prices(chainId: Int, address: String, timestamp: BigInt): [Price]
+  riskScores: [RiskScore]
+  strategies(chainId: Int, apiVersion: String, erc4626: Boolean): [Strategy]
+  strategy(chainId: Int, address: String): Strategy
+  strategyReports(chainId: Int, address: String): [StrategyReport]
+  transfers(chainId: Int, address: String): [Transfer]
+  timeseries(chainId: Int, address: String, label: String!, component: String, period: String, limit: Int, timestamp: BigInt): [Output]
+  tvls(chainId: Int!, address: String, period: String, limit: Int, timestamp: BigInt): [Tvl]
+  accountRoles(chainId: Int, account: String!): [AccountRole]
+  accountVaults(chainId: Int, account: String!): [Vault]
+  accountStrategies(chainId: Int, account: String!): [Strategy]
+  accountants(chainId: Int): [Accountant]
+  accountant(chainId: Int!, address: String!): Accountant
+  things(chainId: Int, labels: [String]!): [Thing]
+}
+
+type QueueStatus {
+  name: String!
+  waiting: Int!
+  active: Int!
+  failed: Int!
+}
+
+type RedisInfo {
+  version: String!
+  mode: String!
+  os: String!
+  uptime: Int!
+  clients: Int!
+  memory: RedisMemory!
+}
+
+type RedisMemory {
+  total: BigInt!
+  used: BigInt!
+  peak: BigInt!
+  fragmentation: Float!
+}
+
+type ReportApr {
+  gross: Float
+  net: Float
+}
+
+type ReportDetail {
+  chainId: Int
+  address: String
+  blockNumber: BigInt
+  blockTime: BigInt
+  transactionHash: String
+  profit: BigInt
+  profitUsd: Float
+  loss: BigInt
+  lossUsd: Float
+  apr: Apr
+}
+
+type Reward {
+  chainId: Int
+  address: String
+  name: String
+  symbol: String
+  decimals: Int
+  balance: BigInt
+  balanceUsd: Float
+}
+
+type RiskScore {
+  label: String
+  auditScore: Float
+  codeReviewScore: Float
+  complexityScore: Float
+  protocolSafetyScore: Float
+  teamKnowledgeScore: Float
+  testingScore: Float
+}
+
+type Role {
+  account: String!
+  roleMask: BigInt!
+}
+
+type SparklinePoint {
+  chainId: Int!
+  address: String!
+  label: String!
+  component: String
+  blockTime: BigInt!
+  close: Float!
+}
+
+type Sparklines {
+  tvl: [SparklinePoint]
+  apy: [SparklinePoint]
+}
+
+type Strategy {
+  chainId: Int
+  address: String
+  apiVersion: String
+  balanceOfWant: BigInt
+  baseFeeOracle: String
+  creditThreshold: BigInt
+  crv: String
+  curveVoter: String
+  delegatedAssets: BigInt
+  doHealthCheck: Boolean
+  emergencyExit: Boolean
+  erc4626: Boolean
+  estimatedTotalAssets: BigInt
+  forceHarvestTriggerOnce: Boolean
+  gauge: String
+  healthCheck: String
+  inceptTime: BigInt
+  inceptBlock: BigInt
+  isActive: Boolean
+  isBaseFeeAcceptable: Boolean
+  isOriginal: Boolean
+  keeper: String
+  localKeepCRV: BigInt
+  maxReportDelay: BigInt
+  metadataURI: String
+  minReportDelay: BigInt
+  name: String
+  proxy: String
+  rewards: String
+  stakedBalance: BigInt
+  strategist: String
+  tradeFactory: String
+  vault: String
+  want: String
+  DOMAIN_SEPARATOR: String
+  FACTORY: String
+  MAX_FEE: Int
+  MIN_FEE: Int
+  decimals: Int
+  fullProfitUnlockDate: BigInt
+  isShutdown: Boolean
+  lastReport: BigInt
+  lastReportDetail: ReportDetail
+  management: String
+  pendingManagement: String
+  performanceFee: Int
+  performanceFeeRecipient: String
+  pricePerShare: BigInt
+  profitMaxUnlockTime: BigInt
+  profitUnlockingRate: BigInt
+  symbol: String
+  totalAssets: BigInt
+  totalDebt: BigInt
+  totalIdle: BigInt
+  totalSupply: BigInt
+  totalDebtUsd: Float
+  lenderStatuses: [LenderStatus]
+  claims: [Reward]
+  risk: RiskScore
+  meta: StrategyMeta
+  yearn: Boolean
+}
+
+type StrategyMeta {
+  displayName: String
+  description: String
+  protocols: [String]
+}
+
+type StrategyReport {
+  chainId: Int!
+  address: String!
+  eventName: String!
+  profit: BigInt!
+  loss: BigInt!
+  debtPayment: BigInt
+  debtOutstanding: BigInt
+  protocolFees: BigInt
+  performanceFees: BigInt
+  apr: ReportApr
+  profitUsd: Float
+  lossUsd: Float
+  debtPaymentUsd: Float
+  debtOutstandingUsd: Float
+  protocolFeesUsd: Float
+  performanceFeesUsd: Float
+  priceUsd: Float
+  priceSource: String
+  blockNumber: Int!
+  blockTime: BigInt!
+  logIndex: Int!
+  transactionHash: String!
+}
+
+type Thing {
+  chainId: Int!
+  address: String!
+  label: String!
+}
+
+type TokenMeta {
+  type: String
+  category: String
+  description: String
+  displayName: String
+  displaySymbol: String
+  icon: String
+}
+
+type Transfer {
+  chainId: Int!
+  address: String!
+  sender: String!
+  receiver: String!
+  value: Float!
+  valueUsd: Float
+  blockNumber: BigInt!
+  blockTime: BigInt!
+  logIndex: Int!
+  transactionHash: String!
+}
+
+type Tvl {
+  chainId: Int!
+  address: String!
+  value: Float!
+  priceUsd: Float!
+  priceSource: String!
+  period: String!
+  blockNumber: Int!
+  time: BigInt
+}
+
+type Vault {
+  DOMAIN_SEPARATOR: String
+  FACTORY: String
+  accountant: String
+  activation: BigInt
+  address: String
+  apiVersion: String
+  asset: Erc20
+  availableDepositLimit: BigInt
+  chainId: Int
+  creditAvailable: BigInt
+  debtOutstanding: BigInt
+  debtRatio: BigInt
+  decimals: BigInt
+  depositLimit: BigInt
+  deposit_limit: BigInt
+  deposit_limit_module: String
+  emergencyShutdown: Boolean
+  erc4626: Boolean
+  expectedReturn: BigInt
+  fullProfitUnlockDate: BigInt
+  future_role_manager: String
+  get_default_queue: [String]
+  governance: String
+  guardian: String
+  inceptTime: BigInt
+  inceptBlock: BigInt
+  isShutdown: Boolean
+  lastProfitUpdate: BigInt
+  lastReport: BigInt
+  lastReportDetail: ReportDetail
+  lockedProfit: BigInt
+  lockedProfitDegradation: BigInt
+  management: String
+  managementFee: BigInt
+  maxAvailableShares: BigInt
+  minimum_total_idle: BigInt
+  name: String
+  performanceFee: BigInt
+  pricePerShare: BigInt
+  profitMaxUnlockTime: BigInt
+  profitUnlockingRate: BigInt
+  rewards: String
+  role_manager: String
+  symbol: String
+  token: String
+  totalAssets: BigInt
+  totalDebt: BigInt
+  totalIdle: BigInt
+  totalSupply: BigInt
+  total_supply: BigInt
+  unlockedShares: BigInt
+  use_default_queue: Boolean
+  vaultType: Int
+  withdraw_limit_module: String
+  withdrawalQueue: [String]
+  strategies: [String]
+  allocators: [String]
+  debts: [Debt]
+  fees: Fees
+  risk: RiskScore
+  meta: VaultMeta
+  sparklines: Sparklines
+  tvl: SparklinePoint
+  apy: Apy
+  roles: [Role]
+  yearn: Boolean
+}
+
+type VaultMeta {
+  displayName: String
+  displaySymbol: String
+  description: String
+  protocols: [String]
+  token: TokenMeta
+}
+
+type VaultReport {
+  chainId: Int!
+  address: String!
+  eventName: String!
+  strategy: String!
+  gain: BigInt!
+  loss: BigInt!
+  debtPaid: BigInt
+  totalGain: BigInt
+  totalLoss: BigInt
+  totalDebt: BigInt
+  debtAdded: BigInt
+  debtRatio: BigInt
+  currentDebt: BigInt
+  protocolFees: BigInt
+  totalFees: BigInt
+  totalRefunds: BigInt
+  gainUsd: Float
+  lossUsd: Float
+  debtPaidUsd: Float
+  totalGainUsd: Float
+  totalLossUsd: Float
+  totalDebtUsd: Float
+  debtAddedUsd: Float
+  currentDebtUsd: Float
+  protocolFeesUsd: Float
+  totalFeesUsd: Float
+  totalRefundsUsd: Float
+  priceUsd: Float
+  priceSource: String
+  apr: ReportApr
+  blockNumber: Int!
+  blockTime: BigInt!
+  logIndex: Int!
+  transactionHash: String!
+}
+
