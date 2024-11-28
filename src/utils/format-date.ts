@@ -1,21 +1,30 @@
-const dateFormatter = new Intl.DateTimeFormat('en-US', {
-  year: 'numeric',
-  month: 'short',
-  day: 'numeric',
-})
+// src/lib/utils.ts
+import { format, isValid } from 'date-fns'
 
-const dateTimeFormatter = new Intl.DateTimeFormat('en-US', {
-  year: 'numeric',
-  month: 'short',
-  day: 'numeric',
-  hour: '2-digit',
-  minute: '2-digit',
-})
-
-export function formatDate(dateString: string): string {
-  return dateFormatter.format(new Date(dateString))
+export const formatDate = (date: string | number | Date): string => {
+  try {
+    const dateObj = new Date(date)
+    if (!isValid(dateObj)) {
+      console.warn(`Invalid date value: ${date}`)
+      return 'Invalid date'
+    }
+    return format(dateObj, 'MMM d, yyyy')
+  } catch (error) {
+    console.error(`Error formatting date: ${error}`)
+    return 'Invalid date'
+  }
 }
 
-export function formatDateTime(dateString: string): string {
-  return dateTimeFormatter.format(new Date(dateString))
+export const formatDateTime = (date: string | number | Date): string => {
+  try {
+    const dateObj = new Date(date)
+    if (!isValid(dateObj)) {
+      console.warn(`Invalid date value: ${date}`)
+      return 'Invalid date'
+    }
+    return format(dateObj, 'MMM d, yyyy HH:mm')
+  } catch (error) {
+    console.error(`Error formatting datetime: ${error}`)
+    return 'Invalid date'
+  }
 }

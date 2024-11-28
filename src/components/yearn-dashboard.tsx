@@ -1,7 +1,7 @@
 'use client'
 
-import { useState } from 'react'
-import type { Vault, TimeseriesDataPoint } from '@/types/vault'
+import { useState, useEffect } from 'react'
+import type { Vault, TimeseriesDataPoint } from '@/types/vaultTypes'
 import {
   Card,
   CardContent,
@@ -21,6 +21,9 @@ import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Badge } from '@/components/ui/badge'
 import { InfoIcon, TrendingUp, DollarSign } from 'lucide-react'
 import { formatDate, formatDateTime } from '@/utils/format-date'
+import { useVaults } from '@/hooks/useVaults'
+import { useVaultTimeseries } from '@/hooks/useVaultTimeseries'
+import { parseISO, format } from 'date-fns'
 
 // Import chart components
 import {
@@ -34,39 +37,40 @@ import {
   ComposedChart,
 } from 'recharts'
 import { ChartContainer, ChartTooltip } from '@/components/ui/chart'
+import { formatUnixTimestamp } from '../lib/utils'
 
 // Sample data - replace with your API data
-const historicalData: TimeseriesDataPoint[] = [
-  { date: '2023-01-01', rawApy: 8.5, movingAverageApy: 8.2, tvl: 1000000 },
-  { date: '2023-02-01', rawApy: 9.2, movingAverageApy: 8.5, tvl: 1200000 },
-  { date: '2023-03-01', rawApy: 7.8, movingAverageApy: 8.3, tvl: 980000 },
-  { date: '2023-04-01', rawApy: 8.9, movingAverageApy: 8.6, tvl: 1150000 },
-  { date: '2023-05-01', rawApy: 9.5, movingAverageApy: 8.8, tvl: 1300000 },
-  { date: '2023-06-01', rawApy: 8.2, movingAverageApy: 8.7, tvl: 1100000 },
-]
+// const historicalData: TimeseriesDataPoint[] = [
+//   { date: '2023-01-01', rawApy: 8.5, movingAverageApy: 8.2, tvl: 1000000 },
+//   { date: '2023-02-01', rawApy: 9.2, movingAverageApy: 8.5, tvl: 1200000 },
+//   { date: '2023-03-01', rawApy: 7.8, movingAverageApy: 8.3, tvl: 980000 },
+//   { date: '2023-04-01', rawApy: 8.9, movingAverageApy: 8.6, tvl: 1150000 },
+//   { date: '2023-05-01', rawApy: 9.5, movingAverageApy: 8.8, tvl: 1300000 },
+//   { date: '2023-06-01', rawApy: 8.2, movingAverageApy: 8.7, tvl: 1100000 },
+// ]
 
-const vaults: Vault[] = [
-  {
-    yearn: true,
-    v3: true,
-    name: 'USDC Vault',
-    chainId: 1,
-    address: '0x...',
-    asset: {
-      name: 'USD Coin',
-      symbol: 'USDC',
-    },
-    apiVersion: '3.0.0',
-    tvl: {
-      blockTime: '2024-01-20T00:00:00Z',
-      close: 1200000,
-      component: 'tvl',
-      label: 'TVL',
-    },
-    pricePerShare: 1.05,
-  },
-  // Add more vaults as needed
-]
+// const vaults: Vault[] = [
+//   {
+//     yearn: true,
+//     v3: true,
+//     name: 'USDC Vault',
+//     chainId: 1,
+//     address: '0x...',
+//     asset: {
+//       name: 'USD Coin',
+//       symbol: 'USDC',
+//     },
+//     apiVersion: '3.0.0',
+//     tvl: {
+//       blockTime: '2024-01-20T00:00:00Z',
+//       close: 1200000,
+//       component: 'tvl',
+//       label: 'TVL',
+//     },
+//     pricePerShare: 1.05,
+//   },
+//   // Add more vaults as needed
+// ]
 
 const timeframes = [
   { value: '7d', label: '7 Days' },
@@ -78,8 +82,84 @@ const timeframes = [
 ]
 
 export default function YearnDashboard() {
-  const [selectedVault, setSelectedVault] = useState(vaults[0])
+  const { vaults, loading: loadingVaults, error: errorVaults } = useVaults()
+  const [selectedVault, setSelectedVault] = useState<Vault | null>(null)
   const [timeframe, setTimeframe] = useState('30d')
+
+  const {
+    fetchTimeseries,
+    timeseriesData,
+    loading: loadingTimeseries,
+    error: errorTimeseries,
+  } = useVaultTimeseries()
+  console.log('timeseriesData: ', timeseriesData)
+
+  // Initialize selectedVault only after vaults have loaded
+  useEffect(() => {
+    if (!selectedVault && vaults && vaults.length > 0) {
+      setSelectedVault(vaults[0])
+    }
+  }, [vaults])
+
+  // Fetch timeseries data when the selected vault or timeframe changes
+  useEffect(() => {
+    if (selectedVault) {
+      fetchTimeseries({
+        variables: {
+          chainId: selectedVault.chainId,
+          address: selectedVault.address,
+          label: 'apy-bwd-delta-pps',
+          component: 'weeklyNet',
+          limit: 1000,
+        },
+      })
+    }
+  }, [selectedVault, timeframe])
+
+  // Map timeframe to limit value for the query
+  function getTimeframeLimit(timeframe: string): number {
+    switch (timeframe) {
+      case '7d':
+        return 7
+      case '30d':
+        return 30
+      case '90d':
+        return 90
+      case '180d':
+        return 180
+      case '1y':
+        return 365
+      case 'all':
+      default:
+        return 1000
+    }
+  }
+
+  // Transform timeseriesData into the format needed for charts
+  const [chartData, setChartData] = useState<any[]>([])
+
+  useEffect(() => {
+    if (timeseriesData && timeseriesData.length > 0) {
+      // Map the timeseriesData to chartData
+      console.log('timeseriesData: ', timeseriesData)
+      const transformedData = timeseriesData.map((dataPoint) => ({
+        date: formatUnixTimestamp(dataPoint.time),
+        value: dataPoint.value * 100,
+      }))
+      console.log('transformedData: ', transformedData)
+      setChartData(transformedData)
+    }
+  }, [timeseriesData])
+
+  // Handle loading states
+  if (loadingVaults || !selectedVault || loadingTimeseries) {
+    return <div>Loading...</div>
+  }
+
+  // Handle errors
+  if (errorVaults || errorTimeseries) {
+    return <div>Error loading data.</div>
+  }
 
   return (
     <div className="flex flex-col gap-6 p-6">
@@ -88,17 +168,18 @@ export default function YearnDashboard() {
         <div className="flex items-center gap-4">
           <Select
             value={selectedVault.address}
-            onValueChange={(value) =>
-              setSelectedVault(
-                vaults.find((v) => v.address === value) || vaults[0],
-              )
-            }
+            onValueChange={(value) => {
+              const currentVault =
+                vaults.find((v: Vault) => v.address === value) || vaults[0] // fixed syntax error
+              console.log('currentVault: ', currentVault)
+              setSelectedVault(currentVault)
+            }}
           >
             <SelectTrigger className="w-[180px]">
               <SelectValue placeholder="Select vault" />
             </SelectTrigger>
             <SelectContent>
-              {vaults.map((vault) => (
+              {vaults.map((vault: Vault) => (
                 <SelectItem key={vault.address} value={vault.address}>
                   {vault.name}
                 </SelectItem>
@@ -117,13 +198,20 @@ export default function YearnDashboard() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
-              {historicalData[historicalData.length - 1].rawApy.toFixed(2)}%
+              {chartData.length > 0
+                ? chartData[chartData.length - 1].value.toFixed(2)
+                : 'N/A'}
+              %
             </div>
             <p className="text-xs text-muted-foreground">
               15-day moving average:{' '}
-              {historicalData[
-                historicalData.length - 1
-              ].movingAverageApy.toFixed(2)}
+              {chartData.length > 0
+                ? (
+                    chartData
+                      .slice(-15)
+                      .reduce((sum, data) => sum + data.value, 0) / 15
+                  ).toFixed(2)
+                : 'N/A'}
               %
             </p>
           </CardContent>
@@ -138,7 +226,7 @@ export default function YearnDashboard() {
               ${(selectedVault.tvl.close / 1000000).toFixed(2)}M
             </div>
             <p className="text-xs text-muted-foreground">
-              Last updated: {formatDateTime(selectedVault.tvl.blockTime)}
+              Last updated: {formatUnixTimestamp(selectedVault.tvl.blockTime)}
             </p>
           </CardContent>
         </Card>
@@ -170,22 +258,15 @@ export default function YearnDashboard() {
               <CardContent className="h-[400px]">
                 <ChartContainer
                   config={{
-                    rawApy: {
-                      label: 'Raw APY %',
+                    value: {
+                      label: 'APY %',
                       color: 'hsl(var(--chart-1))',
-                    },
-                    movingAverageApy: {
-                      label: '15-day Moving Average %',
-                      color: 'hsl(var(--chart-2))',
                     },
                   }}
                 >
                   <ResponsiveContainer width="100%" height="100%">
-                    <LineChart data={historicalData}>
-                      <XAxis
-                        dataKey="date"
-                        tickFormatter={(value) => formatDate(value)}
-                      />
+                    <LineChart data={chartData}>
+                      <XAxis dataKey="date" />
                       <YAxis
                         domain={['auto', 'auto']}
                         tickFormatter={(value) => `${value}%`}
@@ -193,15 +274,8 @@ export default function YearnDashboard() {
                       <ChartTooltip />
                       <Line
                         type="monotone"
-                        dataKey="rawApy"
-                        stroke="var(--color-rawApy)"
-                        strokeWidth={2}
-                        dot={false}
-                      />
-                      <Line
-                        type="monotone"
-                        dataKey="movingAverageApy"
-                        stroke="var(--color-movingAverageApy)"
+                        dataKey="value"
+                        stroke="var(--color-value)"
                         strokeWidth={2}
                         dot={false}
                       />
@@ -211,7 +285,7 @@ export default function YearnDashboard() {
               </CardContent>
             </Card>
 
-            <Alert>
+            {/* <Alert>
               <InfoIcon className="h-4 w-4" />
               <AlertTitle>Strategy Insight</AlertTitle>
               <AlertDescription>
@@ -219,7 +293,7 @@ export default function YearnDashboard() {
                 exposure primarily to {selectedVault.asset.name} lending
                 markets.
               </AlertDescription>
-            </Alert>
+            </Alert> */}
 
             <Card>
               <CardHeader>
@@ -231,28 +305,25 @@ export default function YearnDashboard() {
               <CardContent className="h-[200px]">
                 <ChartContainer
                   config={{
-                    tvl: {
+                    value: {
                       label: 'TVL (millions)',
                       color: 'hsl(var(--chart-3))',
                     },
                   }}
                 >
                   <ResponsiveContainer width="100%" height="100%">
-                    <ComposedChart data={historicalData}>
-                      <XAxis
-                        dataKey="date"
-                        tickFormatter={(value) => formatDate(value)}
-                      />
+                    <ComposedChart data={chartData}>
+                      <XAxis dataKey="date" />
                       <YAxis
                         domain={['auto', 'auto']}
                         tickFormatter={(value) =>
-                          `$${(value / 1000000).toFixed(1)}M`
+                          `$${(value / 1_000_000).toFixed(1)}M`
                         }
                       />
                       <ChartTooltip />
                       <Bar
-                        dataKey="tvl"
-                        fill="var(--color-tvl)"
+                        dataKey="value"
+                        fill="var(--color-value)"
                         radius={[4, 4, 0, 0]}
                       />
                     </ComposedChart>

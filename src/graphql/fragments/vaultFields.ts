@@ -4,6 +4,7 @@ import { gql } from '@apollo/client'
 export const VAULT_FIELDS = gql`
   fragment VaultFields on Vault {
     yearn
+    v3
     address
     name
     chainId

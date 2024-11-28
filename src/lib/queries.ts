@@ -1,5 +1,5 @@
 import { gql } from '@apollo/client'
-import { Vault } from '../types/vault'
+import { Vault } from '../types/vaultTypes'
 
 export const GET_VAULTS = gql`
   query GetVaultData {

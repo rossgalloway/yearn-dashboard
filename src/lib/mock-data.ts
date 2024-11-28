@@ -1,4 +1,4 @@
-import { TimeseriesData, Vault } from '../types/vault'
+import { TimeseriesData, Vault } from '../types/vaultTypes'
 
 export const mockVaults: Vault[] = [
   {
