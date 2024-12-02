@@ -15,7 +15,8 @@ export const APYChart: React.FC<APYChartProps> = ({ chartData, timeframe }) => {
 
   return (
     <ChartContainer
-      config={{ value: { label: 'APY %', color: 'hsl(var(--chart-1))' } }}
+      config={{ value: { label: 'APY %', color: 'black' } }}
+      style={{ height: '400px' }}
     >
       <ResponsiveContainer width="100%" height="100%">
         <LineChart data={filteredData}>

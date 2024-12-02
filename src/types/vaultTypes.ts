@@ -20,21 +20,19 @@ export type Vault = {
   pricePerShare: number
 }
 
-export type TimeseriesDataPoint = {
-  date: string
-  rawApy: number
-  movingAverageApy: number
-  tvl: number
-}
-
-export type TimeseriesData = {
-  chainId: number
-  address: string
+export interface TimeseriesDataPoint {
   label: string
-  component: string
+  component?: string // Optional, as it's not present in TVL data points
   period: string
   time: string
   value: number
+}
+
+export interface Timeseries {
+  address: string
+  chainId: number
+  apy: TimeseriesDataPoint[]
+  tvl: TimeseriesDataPoint[]
 }
 
 export type TimePeriod = '7d' | '30d' | '90d' | '180d' | '1y' | 'all'

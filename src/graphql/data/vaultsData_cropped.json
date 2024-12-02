@@ -1,0 +1,192 @@
+[
+  {
+    "yearn": true,
+    "v3": null,
+    "name": "WETH yVault",
+    "chainId": 1,
+    "address": "0xa258C4606Ca8206D8aA700cE2143D7db854D168c",
+    "asset": {
+      "name": "Wrapped Ether",
+      "symbol": "WETH"
+    },
+    "apiVersion": "0.4.2",
+    "tvl": {
+      "blockTime": "1733097600",
+      "close": 69191651.84568,
+      "component": null,
+      "label": "tvl"
+    },
+    "pricePerShare": "1083256731389055914"
+  },
+  {
+    "yearn": true,
+    "v3": null,
+    "name": "yCRV yVault",
+    "chainId": 1,
+    "address": "0x27B5739e22ad9033bcBf192059122d163b60349D",
+    "asset": {
+      "name": "Yearn CRV",
+      "symbol": "yCRV"
+    },
+    "apiVersion": "0.4.3",
+    "tvl": {
+      "blockTime": "1733097600",
+      "close": 21972516.178667426,
+      "component": null,
+      "label": "tvl"
+    },
+    "pricePerShare": "1849016046053835566"
+  },
+  {
+    "yearn": true,
+    "v3": null,
+    "name": "DAI yVault",
+    "chainId": 1,
+    "address": "0xdA816459F1AB5631232FE5e97a05BBBb94970c95",
+    "asset": {
+      "name": "Dai Stablecoin",
+      "symbol": "DAI"
+    },
+    "apiVersion": "0.4.3",
+    "tvl": {
+      "blockTime": "1733097600",
+      "close": 17763991.240010362,
+      "component": null,
+      "label": "tvl"
+    },
+    "pricePerShare": "1147858055297608638"
+  },
+  {
+    "yearn": true,
+    "v3": null,
+    "name": "Curve stETH Factory yVault",
+    "chainId": 1,
+    "address": "0x5B8C556B8b2a78696F0B9B830B3d67623122E270",
+    "asset": {
+      "name": "Curve.fi ETH/stETH",
+      "symbol": "steCRV"
+    },
+    "apiVersion": "0.4.5",
+    "tvl": {
+      "blockTime": "1733097600",
+      "close": 17437614.410109125,
+      "component": null,
+      "label": "tvl"
+    },
+    "pricePerShare": "1005412134990790212"
+  },
+  {
+    "yearn": true,
+    "v3": null,
+    "name": "Curve stETH Pool yVault",
+    "chainId": 1,
+    "address": "0xdCD90C7f6324cfa40d7169ef80b12031770B4325",
+    "asset": {
+      "name": "Curve.fi ETH/stETH",
+      "symbol": "steCRV"
+    },
+    "apiVersion": "0.3.0",
+    "tvl": {
+      "blockTime": "1733097600",
+      "close": 11176575.079771055,
+      "component": null,
+      "label": "tvl"
+    },
+    "pricePerShare": "1098425989399406290"
+  },
+  {
+    "yearn": true,
+    "v3": null,
+    "name": "USDC yVault",
+    "chainId": 1,
+    "address": "0xa354F35829Ae975e850e23e9615b11Da1B3dC4DE",
+    "asset": {
+      "name": "USD Coin",
+      "symbol": "USDC"
+    },
+    "apiVersion": "0.4.3",
+    "tvl": {
+      "blockTime": "1733097600",
+      "close": 10421274.93290784,
+      "component": null,
+      "label": "tvl"
+    },
+    "pricePerShare": "1114581"
+  },
+  {
+    "yearn": true,
+    "v3": true,
+    "name": "WETH-2 yVault",
+    "chainId": 1,
+    "address": "0xAc37729B76db6438CE62042AE1270ee574CA7571",
+    "asset": {
+      "name": "Wrapped Ether",
+      "symbol": "WETH"
+    },
+    "apiVersion": "3.0.2",
+    "tvl": {
+      "blockTime": "1733097600",
+      "close": 8132687.712240001,
+      "component": null,
+      "label": "tvl"
+    },
+    "pricePerShare": "1040148676453027254"
+  },
+  {
+    "yearn": true,
+    "v3": true,
+    "name": "Sky Rewards USDS Compounder",
+    "chainId": 1,
+    "address": "0x4cE9c93513DfF543Bc392870d57dF8C04e89Ba0a",
+    "asset": {
+      "name": "USDS Stablecoin",
+      "symbol": "USDS"
+    },
+    "apiVersion": "3.0.3",
+    "tvl": {
+      "blockTime": "1733097600",
+      "close": 7316237.068054606,
+      "component": null,
+      "label": "tvl"
+    },
+    "pricePerShare": "1012744141279578694"
+  },
+  {
+    "yearn": true,
+    "v3": true,
+    "name": "USDS-1 yVault",
+    "chainId": 1,
+    "address": "0x182863131F9a4630fF9E27830d945B1413e347E8",
+    "asset": {
+      "name": "USDS Stablecoin",
+      "symbol": "USDS"
+    },
+    "apiVersion": "3.0.3",
+    "tvl": {
+      "blockTime": "1733097600",
+      "close": 6995385.702825867,
+      "component": null,
+      "label": "tvl"
+    },
+    "pricePerShare": "1009275153513158469"
+  },
+  {
+    "yearn": true,
+    "v3": true,
+    "name": "Across WETH Lender",
+    "chainId": 1,
+    "address": "0x9861708f2ad2BD1ed8D4D12436C0d8EB1ED36f1c",
+    "asset": {
+      "name": "Wrapped Ether",
+      "symbol": "WETH"
+    },
+    "apiVersion": "3.0.2",
+    "tvl": {
+      "blockTime": "1733097600",
+      "close": 6956614.167719999,
+      "component": null,
+      "label": "tvl"
+    },
+    "pricePerShare": "1010351993361828231"
+  }
+]

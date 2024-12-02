@@ -1,0 +1,3748 @@
+{
+  "chainId": 1,
+  "address": "0xa354F35829Ae975e850e23e9615b11Da1B3dC4DE",
+  "apy": [
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1708646400",
+      "value": 0.0037386260604657107
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1708732800",
+      "value": 0.03333503111999625
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1708819200",
+      "value": 0.06378412213918616
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1708905600",
+      "value": 0.09511609689712297
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1708992000",
+      "value": 0.12448993854273316
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1709078400",
+      "value": 0.12447937870498027
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1709164800",
+      "value": 0.15129365208313983
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1709251200",
+      "value": 0.16311766704256914
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1709337600",
+      "value": 0.14423617525406152
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1709424000",
+      "value": 0.11267716925784743
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1709510400",
+      "value": 0.08077845494341207
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1709596800",
+      "value": 0.05214159251119699
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1709683200",
+      "value": 0.07271494383858479
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1709769600",
+      "value": 0.07271644650040843
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1709856000",
+      "value": 0.11584098285466138
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1709942400",
+      "value": 0.13803082078281914
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1710028800",
+      "value": 0.13853090105341792
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1710115200",
+      "value": 0.13853384968334836
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1710201600",
+      "value": 0.1385397535126509
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1710288000",
+      "value": 0.13852498930553714
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1710374400",
+      "value": 0.06859900759955062
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1710460800",
+      "value": 0.03452601648084652
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1710547200",
+      "value": 0.0015147568579698678
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1710633600",
+      "value": 0
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1710720000",
+      "value": 0
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1710806400",
+      "value": 0
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1710892800",
+      "value": 0.022159533262064546
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1710979200",
+      "value": 0.09455739994227086
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1711065600",
+      "value": 0.1602113046562632
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1711152000",
+      "value": 0.21157968759890777
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1711238400",
+      "value": 0.25595120509088387
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1711324800",
+      "value": 0.29740335175954447
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1711411200",
+      "value": 0.3401685326571917
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1711497600",
+      "value": 0.35499081144004085
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1711584000",
+      "value": 0.2804287694219052
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1711670400",
+      "value": 0.20798846610762545
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1711756800",
+      "value": 0.15666624133867346
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1711843200",
+      "value": 0.11528698520667557
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1711929600",
+      "value": 0.07966310539506094
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1712016000",
+      "value": 0.04520329929768052
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1712102400",
+      "value": 0.033735192048036655
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1712188800",
+      "value": 0.05657340876870687
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1712275200",
+      "value": 0.09291136863428506
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1712361600",
+      "value": 0.12959374743746332
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1712448000",
+      "value": 0.1448491145651165
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1712534400",
+      "value": 0.14484291419742146
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1712620800",
+      "value": 0.14483052547065145
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1712707200",
+      "value": 0.12049701381622957
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1712793600",
+      "value": 0.08317741704124382
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1712880000",
+      "value": 0.047161653883543764
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1712966400",
+      "value": 0.028510431058644148
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1713052800",
+      "value": 0.0415669914127188
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1713139200",
+      "value": 0.06786732473786272
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1713225600",
+      "value": 0.09482823934281837
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1713312000",
+      "value": 0.10485917193424865
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1713398400",
+      "value": 0.10486578973018856
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1713484800",
+      "value": 0.10486578911227018
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1713571200",
+      "value": 0.087524726444556
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1713657600",
+      "value": 0.08567801778275475
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1713744000",
+      "value": 0.0351423105891433
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1713830400",
+      "value": 0.023203289761055013
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1713916800",
+      "value": 0.036167457372691336
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1714003200",
+      "value": 0.05901894595169366
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1714089600",
+      "value": 0.06178001612571937
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1714176000",
+      "value": 0.0911031223972445
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1714262400",
+      "value": 0.09109931710805785
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1714348800",
+      "value": 0.09110882587139058
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1714435200",
+      "value": 0.07869125122612286
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1714521600",
+      "value": 0.057144529772404695
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1714608000",
+      "value": 0.03049905375206241
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1714694400",
+      "value": 0.020946437700040343
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1714780800",
+      "value": 0.03316511384746357
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1714867200",
+      "value": 0.05413321322575815
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1714953600",
+      "value": 0.07551660456594922
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1715040000",
+      "value": 0.08367675669093844
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1715126400",
+      "value": 0.08367327647274281
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1715212800",
+      "value": 0.08367153720220144
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1715299200",
+      "value": 0.07017557263508256
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1715385600",
+      "value": 0.06456933979544921
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1715472000",
+      "value": 0.02906213085202669
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1715558400",
+      "value": 0.018608812569056887
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1715644800",
+      "value": 0.027416878409489254
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1715731200",
+      "value": 0.044459693129687894
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1715817600",
+      "value": 0.06187857417224496
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1715904000",
+      "value": 0.06853767459821736
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1715990400",
+      "value": 0.06853625844779421
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1716076800",
+      "value": 0.0685334275103675
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1716163200",
+      "value": 0.057586654306901464
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1716249600",
+      "value": 0.040173653250816566
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1716336000",
+      "value": 0.02305436233854352
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1716422400",
+      "value": 0.018581552796123058
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1716508800",
+      "value": 0.032180799354467604
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1716595200",
+      "value": 0.052557606767584586
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1716681600",
+      "value": 0.0733293434937663
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1716768000",
+      "value": 0.08130048983986371
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1716854400",
+      "value": 0.08129880215579721
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1716940800",
+      "value": 0.08130217759396663
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1717027200",
+      "value": 0.06822618157275762
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1717113600",
+      "value": 0.04753792751096464
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1717200000",
+      "value": 0.027255162753934803
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1717286400",
+      "value": 0.020365326348972923
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1717372800",
+      "value": 0.03391467966824124
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1717459200",
+      "value": 0.05541290799151333
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1717545600",
+      "value": 0.07729081174659558
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1717632000",
+      "value": 0.0857459352597365
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1717718400",
+      "value": 0.08573702792567506
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1717804800",
+      "value": 0.08574059063733896
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1717891200",
+      "value": 0.07196496818243658
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1717977600",
+      "value": 0.05012795378238555
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1718064000",
+      "value": 0.0287404361255581
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1718150400",
+      "value": 0.023859223612407554
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1718236800",
+      "value": 0.04216442815280397
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1718323200",
+      "value": 0.06899949087487034
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1718409600",
+      "value": 0.09655927084270965
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1718496000",
+      "value": 0.10721141004991286
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1718582400",
+      "value": 0.10721591316947343
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1718668800",
+      "value": 0.10720689912029169
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1718755200",
+      "value": 0.08988999399339037
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1718841600",
+      "value": 0.06246790843359151
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1718928000",
+      "value": 0.035695122263921686
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1719014400",
+      "value": 0.024797763149986718
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1719100800",
+      "value": 0.03601804433689226
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1719187200",
+      "value": 0.06107550855852484
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1719273600",
+      "value": 0.08542981909816438
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1719360000",
+      "value": 0.09469829044740585
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1719446400",
+      "value": 0.09468642646685654
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1719532800",
+      "value": 0.09469235891471817
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1719619200",
+      "value": 0.07946184081628105
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1719705600",
+      "value": 0.055367574438723643
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1719792000",
+      "value": 0.0316824423404265
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1719878400",
+      "value": 0.021769758178575405
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1719964800",
+      "value": 0.034471891141538036
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1720051200",
+      "value": 0.056316128816067845
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1720137600",
+      "value": 0.07861912826354867
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1720224000",
+      "value": 0.08713656360403665
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1720310400",
+      "value": 0.08713475079525002
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1720396800",
+      "value": 0.08713474877008998
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1720483200",
+      "value": 0.07377542096980405
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1720569600",
+      "value": 0.05160887679406101
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1720656000",
+      "value": 0.0298105167929954
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1720742400",
+      "value": 0.018816915118684996
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1720828800",
+      "value": 0.02759120533786974
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1720915200",
+      "value": 0.045314630736455364
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1721001600",
+      "value": 0.06334718621294733
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1721088000",
+      "value": 0.07075703739173078
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1721174400",
+      "value": 0.07076287737643727
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1721260800",
+      "value": 0.07076287696883976
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1721347200",
+      "value": 0.0599464190266461
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1721433600",
+      "value": 0.04201362813842424
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1721520000",
+      "value": 0.024340866836542574
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1721606400",
+      "value": 0.017481052135377873
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1721692800",
+      "value": 0.02833503506011259
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1721779200",
+      "value": 0.04654950034975203
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1721865600",
+      "value": 0.06507970730022605
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1721952000",
+      "value": 0.07285850369897329
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1722038400",
+      "value": 0.07286000843607643
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1722124800",
+      "value": 0.07286000864612219
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1722211200",
+      "value": 0.061783542441524064
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1722297600",
+      "value": 0.04329637606962056
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1722384000",
+      "value": 0.025138889947457166
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1722470400",
+      "value": 0.0073025138452966765
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1722556800",
+      "value": 0
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1722643200",
+      "value": 0
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1722729600",
+      "value": 0
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1722816000",
+      "value": 0
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1722902400",
+      "value": 0
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1722988800",
+      "value": 0
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1723075200",
+      "value": 0
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1723161600",
+      "value": 0.0034292329296776725
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1723248000",
+      "value": 0.03226406326004372
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1723334400",
+      "value": 0.061861789261954625
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1723420800",
+      "value": 0.0922811401283461
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1723507200",
+      "value": 0.11947453069693936
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1723593600",
+      "value": 0.1194745303456135
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1723680000",
+      "value": 0.11946193172334829
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1723766400",
+      "value": 0.1156387425626515
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1723852800",
+      "value": 0.08453443058932764
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1723939200",
+      "value": 0.054302122586271206
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1724025600",
+      "value": 0.024937906360436024
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1724112000",
+      "value": 0
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1724198400",
+      "value": 0
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1724284800",
+      "value": 0
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1724371200",
+      "value": 0
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1724457600",
+      "value": 0
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1724544000",
+      "value": 0
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1724630400",
+      "value": 0
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1724716800",
+      "value": 0
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1724803200",
+      "value": 0
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1724889600",
+      "value": 0
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1724976000",
+      "value": 0
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1725062400",
+      "value": 0
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1725148800",
+      "value": 0
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1725235200",
+      "value": 0
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1725321600",
+      "value": 0
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1725408000",
+      "value": 0
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1725494400",
+      "value": 0
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1725580800",
+      "value": 0
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1725667200",
+      "value": 0
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1725753600",
+      "value": 0
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1725840000",
+      "value": 0
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1725926400",
+      "value": 0
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1726012800",
+      "value": 0
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1726099200",
+      "value": 0
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1726185600",
+      "value": 0.006998828921363387
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1726272000",
+      "value": 0.04807253638914011
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1726358400",
+      "value": 0.09073273310368246
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1726444800",
+      "value": 0.13519570228950695
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1726531200",
+      "value": 0.17314853708958156
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1726617600",
+      "value": 0.1731597534053524
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1726704000",
+      "value": 0.17316349354403426
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1726790400",
+      "value": 0.1650026866622507
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1726876800",
+      "value": 0.11934830015558195
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1726963200",
+      "value": 0.07551125815963755
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1727049600",
+      "value": 0.0350445474008545
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1727136000",
+      "value": 0.010364258337152155
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1727222400",
+      "value": 0.019241038118466447
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1727308800",
+      "value": 0.028197783988497926
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1727395200",
+      "value": 0.035659744107388036
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1727481600",
+      "value": 0.035659021957446635
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1727568000",
+      "value": 0.0356590215539625
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1727654400",
+      "value": 0.034094019563075895
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1727740800",
+      "value": 0.02503722744345227
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1727827200",
+      "value": 0.0161079845913199
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1727913600",
+      "value": 0.010119534121624696
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1728000000",
+      "value": 0.01927654986500671
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1728086400",
+      "value": 0.03597643934219574
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1728172800",
+      "value": 0.052896373612527636
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1728259200",
+      "value": 0.06716327547708345
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1728345600",
+      "value": 0.06857490792279441
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1728432000",
+      "value": 0.07682430033915488
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1728518400",
+      "value": 0.08197023809998516
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1728604800",
+      "value": 0.0719820456207787
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1728691200",
+      "value": 0.059189381794096274
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1728777600",
+      "value": 0.04779051022525227
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1728864000",
+      "value": 0.04516351715685385
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1728950400",
+      "value": 0.05526664194401443
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1729036800",
+      "value": 0.05699549571522344
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1729123200",
+      "value": 0.05266046225154475
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1729209600",
+      "value": 0.05017708231764284
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1729296000",
+      "value": 0.05568101652414903
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1729382400",
+      "value": 0.060018598752830554
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1729468800",
+      "value": 0.05690859750009958
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1729555200",
+      "value": 0.048370258975034996
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1729641600",
+      "value": 0.04244913068753253
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1729728000",
+      "value": 0.046529417073801316
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1729814400",
+      "value": 0.04953551902356024
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1729900800",
+      "value": 0.04612144978361754
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1729987200",
+      "value": 0.038700047800733994
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1730073600",
+      "value": 0.034156118203908736
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1730160000",
+      "value": 0.04099367352019101
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1730246400",
+      "value": 0.046935331233064925
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1730332800",
+      "value": 0.04762342826087007
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1730419200",
+      "value": 0.04289216657271844
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1730505600",
+      "value": 0.04107347194795108
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1730592000",
+      "value": 0.051114044646572765
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1730678400",
+      "value": 0.05999905241682635
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1730764800",
+      "value": 0.06073715316882944
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1730851200",
+      "value": 0.05465667944812047
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1730937600",
+      "value": 0.05093625179176753
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1731024000",
+      "value": 0.05702652962144561
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1731110400",
+      "value": 0.06160276292137623
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1731196800",
+      "value": 0.05745406696358124
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1731283200",
+      "value": 0.0478905379894794
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1731369600",
+      "value": 0.0418913499059812
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1731456000",
+      "value": 0.050149706098754576
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1731542400",
+      "value": 0.05746946955697574
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1731628800",
+      "value": 0.05855033997249115
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1731715200",
+      "value": 0.052743963131640426
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1731801600",
+      "value": 0.04972162663497581
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1731888000",
+      "value": 0.0616624890447206
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1731974400",
+      "value": 0.07197547192928022
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1732060800",
+      "value": 0.07265728712601716
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1732147200",
+      "value": 0.06512681214810989
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1732233600",
+      "value": 0.06146922640706309
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1732320000",
+      "value": 0.07403138359128003
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1732406400",
+      "value": 0.08455192366553899
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1732492800",
+      "value": 0.0830008125278956
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1732579200",
+      "value": 0.07277627877884685
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1732665600",
+      "value": 0.06704663670974775
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1732752000",
+      "value": 0.07966293016386983
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1732838400",
+      "value": 0.0902201723178282
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1732924800",
+      "value": 0.08861008194111908
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1733011200",
+      "value": 0.07798588180078503
+    },
+    {
+      "label": "apy-bwd-delta-pps",
+      "component": "weeklyNet",
+      "period": "1 day",
+      "time": "1733097600",
+      "value": 0.06997993831949256
+    }
+  ],
+  "tvl": [
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1708646400",
+      "value": 15112059.28046346
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1708732800",
+      "value": 15118037.680548599
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1708819200",
+      "value": 15108031.09656636
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1708905600",
+      "value": 15140618.1330854
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1708992000",
+      "value": 15179986.33177774
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1709078400",
+      "value": 15129977.941007571
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1709164800",
+      "value": 15171749.891635483
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1709251200",
+      "value": 15174107.016920501
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1709337600",
+      "value": 15143222.219789859
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1709424000",
+      "value": 15526796.94884271
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1709510400",
+      "value": 15718008.542849911
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1709596800",
+      "value": 15747875.74580162
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1709683200",
+      "value": 15763280.81453463
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1709769600",
+      "value": 15739452.315049399
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1709856000",
+      "value": 15766257.633558301
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1709942400",
+      "value": 15751136.265927099
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1710028800",
+      "value": 15747707.199208401
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1710115200",
+      "value": 15805375.58655711
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1710201600",
+      "value": 15802772.1691974
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1710288000",
+      "value": 15818606.6102487
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1710374400",
+      "value": 15885065.652411481
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1710460800",
+      "value": 15465733.20661983
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1710547200",
+      "value": 15495135.288296627
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1710633600",
+      "value": 15508999.10814282
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1710720000",
+      "value": 14004805.763098901
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1710806400",
+      "value": 14029974.13695108
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1710892800",
+      "value": 14110583.212050881
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1710979200",
+      "value": 14080000.82422246
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1711065600",
+      "value": 14051610.18395058
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1711152000",
+      "value": 14117680.5443424
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1711238400",
+      "value": 14083956.726384329
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1711324800",
+      "value": 14068758.500135418
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1711411200",
+      "value": 14190218.118137507
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1711497600",
+      "value": 14162971.866365936
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1711584000",
+      "value": 14156072.838835282
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1711670400",
+      "value": 14171907.1383
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1711756800",
+      "value": 14173058.9086
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1711843200",
+      "value": 14186228.205449298
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1711929600",
+      "value": 14069500.5827
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1712016000",
+      "value": 14041249.025529938
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1712102400",
+      "value": 14101782.80106885
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1712188800",
+      "value": 14128547.806072699
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1712275200",
+      "value": 14118766.722307075
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1712361600",
+      "value": 14118766.722307075
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1712448000",
+      "value": 14107235.152647885
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1712534400",
+      "value": 14107235.152647885
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1712620800",
+      "value": 14080642.397371938
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1712707200",
+      "value": 13972886.3276244
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1712793600",
+      "value": 13965899.1857464
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1712880000",
+      "value": 13961706.900619598
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1712966400",
+      "value": 14018405.09576904
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1713052800",
+      "value": 14037354.564178659
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1713139200",
+      "value": 13986059.912703061
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1713225600",
+      "value": 13998620.209793802
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1713312000",
+      "value": 13939432.321751999
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1713398400",
+      "value": 13986541.66740441
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1713484800",
+      "value": 14026010.20875705
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1713571200",
+      "value": 0
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1713657600",
+      "value": 14005481.675792502
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1713744000",
+      "value": 14015063.861530313
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1713830400",
+      "value": 13987141.32765075
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1713916800",
+      "value": 13978566.530080002
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1714003200",
+      "value": 13986287.79960555
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1714089600",
+      "value": 13958017.242522934
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1714176000",
+      "value": 13931814.159753839
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1714262400",
+      "value": 13937818.694507273
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1714348800",
+      "value": 13937818.694507273
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1714435200",
+      "value": 13894284.345710406
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1714521600",
+      "value": 13899299.370639266
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1714608000",
+      "value": 13854975.249993088
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1714694400",
+      "value": 13885991.013662204
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1714780800",
+      "value": 13894550.050267877
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1714867200",
+      "value": 13893161.802851604
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1714953600",
+      "value": 13888945.552042658
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1715040000",
+      "value": 13807587.323274396
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1715126400",
+      "value": 13806058.159902414
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1715212800",
+      "value": 13811101.296672812
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1715299200",
+      "value": 13815721.72831791
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1715385600",
+      "value": 13815721.72831791
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1715472000",
+      "value": 13814645.613711236
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1715558400",
+      "value": 13836879.682198714
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1715644800",
+      "value": 13835405.43306074
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1715731200",
+      "value": 13835549.985265594
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1715817600",
+      "value": 13834893.68232692
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1715904000",
+      "value": 13835821.80268639
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1715990400",
+      "value": 13804342.412547324
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1716076800",
+      "value": 13803538.562858237
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1716163200",
+      "value": 13803320.882145865
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1716249600",
+      "value": 13803368.28327569
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1716336000",
+      "value": 13803468.32458769
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1716422400",
+      "value": 13806328.26745214
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1716422400",
+      "value": 13821421.362344522
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1716508800",
+      "value": 13856085.764436498
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1716508800",
+      "value": 0
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1716508800",
+      "value": 13815597.782579226
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1716595200",
+      "value": 0
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1716595200",
+      "value": 13815019.112805083
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1716681600",
+      "value": 13808672.194730591
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1716768000",
+      "value": 13809173.12799369
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1716854400",
+      "value": 13809262.1084
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1716940800",
+      "value": 13809741.4065
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1717027200",
+      "value": 13802401.488660483
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1717113600",
+      "value": 13647070.5784
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1717200000",
+      "value": 13645799.027388565
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1717286400",
+      "value": 13673925.961448243
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1717372800",
+      "value": 13656604.32577072
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1717459200",
+      "value": 13649988.555121422
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1717545600",
+      "value": 13612998.00851192
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1717632000",
+      "value": 13520112.427275281
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1717632000",
+      "value": 13552435.470718596
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1717718400",
+      "value": 13554227.595219808
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1717804800",
+      "value": 13597100.808704233
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1717891200",
+      "value": 13529516.1353
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1717977600",
+      "value": 13531830.200902732
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1718064000",
+      "value": 13863531.376348432
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1718150400",
+      "value": 13897292.8427
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1718236800",
+      "value": 13783585.118833816
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1718323200",
+      "value": 13787792.9105
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1718409600",
+      "value": 13783819.6458
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1718496000",
+      "value": 13684526.4452
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1718582400",
+      "value": 13680961.02297397
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1718668800",
+      "value": 13679773.62739714
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1718755200",
+      "value": 13660580.138491997
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1718841600",
+      "value": 13662772.5325
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1718928000",
+      "value": 13644665.547952792
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1719014400",
+      "value": 13689749.4865
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1719014400",
+      "value": 13689100.213748539
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1719100800",
+      "value": 13577656.86484019
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1719187200",
+      "value": 13581369.1963
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1719273600",
+      "value": 13603875.5236
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1719360000",
+      "value": 13619964.549
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1719446400",
+      "value": 13616414.2109
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1719532800",
+      "value": 13615687.855513943
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1719619200",
+      "value": 13599979.070456052
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1719705600",
+      "value": 13601688.2121
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1719792000",
+      "value": 13402592.433480084
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1719878400",
+      "value": 13431758.8033
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1719964800",
+      "value": 13382293.03345047
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1720051200",
+      "value": 13382628.674480679
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1720137600",
+      "value": 13389606.867796378
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1720137600",
+      "value": 13400316.411381898
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1720224000",
+      "value": 13372460.445903335
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1720310400",
+      "value": 13420368.542359134
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1720396800",
+      "value": 13454718.8473422
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1720483200",
+      "value": 13453181.8265364
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1720569600",
+      "value": 13419969.350652901
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1720656000",
+      "value": 13422763.661188407
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1720742400",
+      "value": 13414316.5566
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1720828800",
+      "value": 13438423.281162
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1720915200",
+      "value": 13405539.118374731
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1721001600",
+      "value": 13411318.63867026
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1721088000",
+      "value": 13422626.710793298
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1721174400",
+      "value": 13405480.420475468
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1721260800",
+      "value": 13402020.4428185
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1721347200",
+      "value": 13342107.636969246
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1721433600",
+      "value": 13371498.7374
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1721520000",
+      "value": 13364386.694305846
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1721606400",
+      "value": 13393029.230360208
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1721692800",
+      "value": 13385101.67697374
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1721779200",
+      "value": 13381684.834362397
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1721865600",
+      "value": 13382728.6872
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1721952000",
+      "value": 12837373.2721
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1722038400",
+      "value": 12836325.324897049
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1722124800",
+      "value": 12831684.141105132
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1722211200",
+      "value": 12835718.010068567
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1722297600",
+      "value": 12836680.80349174
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1722384000",
+      "value": 12837260.879601827
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1722470400",
+      "value": 12695230.51751068
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1722556800",
+      "value": 12152865.566512832
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1722643200",
+      "value": 12156719.5672
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1722729600",
+      "value": 12145588.343795579
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1722816000",
+      "value": 12127113.633450376
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1722902400",
+      "value": 12139806.680000998
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1722988800",
+      "value": 12126617.533130098
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1723075200",
+      "value": 12001311.993386399
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1723075200",
+      "value": 12012122.904
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1723161600",
+      "value": 12044305.1548
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1723248000",
+      "value": 12041236.247242708
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1723334400",
+      "value": 12069203.791629
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1723420800",
+      "value": 12129819.828625236
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1723507200",
+      "value": 12632526.310082037
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1723593600",
+      "value": 12628961.091379775
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1723680000",
+      "value": 12137204.584858501
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1723766400",
+      "value": 12148884.8863
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1723852800",
+      "value": 12146182.96622761
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1723939200",
+      "value": 12130877.500029001
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1724025600",
+      "value": 11981419.4785285
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1724112000",
+      "value": 11955491.8013881
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1724198400",
+      "value": 11948970.430120649
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1724284800",
+      "value": 11958515.2332
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1724371200",
+      "value": 11954341.267685728
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1724457600",
+      "value": 11954470.588214638
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1724544000",
+      "value": 11978606.2012617
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1724630400",
+      "value": 11966584.8402
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1724716800",
+      "value": 11966533.6615
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1724803200",
+      "value": 11966533.649
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1724889600",
+      "value": 11966534.1601
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1724976000",
+      "value": 11961128.553921437
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1725062400",
+      "value": 11961191.151457155
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1725148800",
+      "value": 11950254.896246556
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1725235200",
+      "value": 11943136.545703702
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1725321600",
+      "value": 11938590.435672835
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1725408000",
+      "value": 11942024.903417267
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1725494400",
+      "value": 11932263.0756
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1725580800",
+      "value": 11932242.5412
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1725667200",
+      "value": 11929211.751594536
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1725753600",
+      "value": 11932242.5412
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1725840000",
+      "value": 11923663.258812876
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1725926400",
+      "value": 11610062.6178537
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1726012800",
+      "value": 11597547.875031857
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1726099200",
+      "value": 11593776.3646
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1726185600",
+      "value": 11634670.082480079
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1726272000",
+      "value": 11638054.1965
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1726358400",
+      "value": 11619642.299745493
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1726444800",
+      "value": 11628062.04
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1726531200",
+      "value": 11620843.104573773
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1726617600",
+      "value": 11649711.2617886
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1726704000",
+      "value": 11639362.826448947
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1726790400",
+      "value": 11666073.1889
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1726876800",
+      "value": 11662071.621531982
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1726963200",
+      "value": 11661569.980389345
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1727049600",
+      "value": 11675409.829125432
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1727136000",
+      "value": 11665820.245370802
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1727222400",
+      "value": 11675534.2899
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1727308800",
+      "value": 11660788.090091856
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1727395200",
+      "value": 11667129.105669241
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1727481600",
+      "value": 11672586.680056933
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1727568000",
+      "value": 11673414.763523342
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1727654400",
+      "value": 11665190.0686
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1727740800",
+      "value": 11650181.095516346
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1727827200",
+      "value": 11654003.6086
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1727913600",
+      "value": 11581390.092905289
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1728000000",
+      "value": 11578455.677392036
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1728086400",
+      "value": 11578354.407
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1728172800",
+      "value": 11564782.252406433
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1728259200",
+      "value": 11460173.713337928
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1728345600",
+      "value": 11437377.607652178
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1728432000",
+      "value": 11442062.814658381
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1728518400",
+      "value": 11443453.8687
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1728604800",
+      "value": 11434542.374070028
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1728691200",
+      "value": 11438649.711670134
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1728777600",
+      "value": 11429667.065699043
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1728864000",
+      "value": 11424879.235631466
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1728950400",
+      "value": 11432393.263504514
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1729036800",
+      "value": 11432937.831194013
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1729123200",
+      "value": 11461732.545298198
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1729209600",
+      "value": 11471606.1122
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1729296000",
+      "value": 11489457.312087275
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1729382400",
+      "value": 11489779.0259
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1729468800",
+      "value": 11485289.232075648
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1729555200",
+      "value": 11481603.029546957
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1729641600",
+      "value": 11505290.6537
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1729728000",
+      "value": 11501114.233192706
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1729814400",
+      "value": 11512541.5218942
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1729900800",
+      "value": 11669057.2738
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1729987200",
+      "value": 11660667.221620137
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1730073600",
+      "value": 11689977.196397498
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1730160000",
+      "value": 11677420.323197665
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1730246400",
+      "value": 11648301.3269
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1730332800",
+      "value": 11648922.9531
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1730419200",
+      "value": 11649203.3015
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1730505600",
+      "value": 11656058.102665348
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1730592000",
+      "value": 11654051.803000754
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1730678400",
+      "value": 11621435.130358161
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1730764800",
+      "value": 11620653.399696574
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1730851200",
+      "value": 11620673.9391
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1730937600",
+      "value": 11605000.1632
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1731024000",
+      "value": 11642244.565155137
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1731110400",
+      "value": 10694408.7347
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1731196800",
+      "value": 10694865.3661
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1731283200",
+      "value": 10737644.8275644
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1731369600",
+      "value": 10647025.50967471
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1731456000",
+      "value": 10625573.360926924
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1731542400",
+      "value": 10628946.22936617
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1731628800",
+      "value": 10672003.3484
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1731715200",
+      "value": 10679526.3213
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1731801600",
+      "value": 10703010.083866099
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1731888000",
+      "value": 10681484.205592198
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1731974400",
+      "value": 10490165.4008
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1732060800",
+      "value": 10487690.424839498
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1732147200",
+      "value": 10485733.330489391
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1732233600",
+      "value": 10500260.847938322
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1732320000",
+      "value": 10497887.751017138
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1732406400",
+      "value": 10491177.976978922
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1732492800",
+      "value": 10479985.80258954
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1732579200",
+      "value": 10559992.916539548
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1732665600",
+      "value": 10573319.455443362
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1732752000",
+      "value": 10579281.722232621
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1732838400",
+      "value": 10567601.9744
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1732924800",
+      "value": 10568634.1871
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1733011200",
+      "value": 10568634.1962
+    },
+    {
+      "label": "tvl",
+      "period": "1 day",
+      "time": "1733097600",
+      "value": 10443907.24383069
+    }
+  ]
+}

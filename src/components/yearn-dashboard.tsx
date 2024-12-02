@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import type { Vault, TimeseriesDataPoint } from '@/types/vaultTypes'
+import type { Vault, TimeseriesDataPoint, Timeseries } from '@/types/vaultTypes'
 import { VaultSelector } from '@/components/yearn-dashboard/VaultSelector'
 import { MetricsCard } from '@/components/yearn-dashboard/MetricsCard'
 import { APYChart } from '@/components/yearn-dashboard/APYChart'
@@ -13,6 +13,8 @@ import { InfoIcon, TrendingUp, DollarSign } from 'lucide-react'
 import { formatUnixTimestamp } from '../lib/utils'
 import { TabsContent } from './ui/tabs'
 
+import vaultsDataCropped from '@/graphql/data/vaultsData_cropped.json'
+
 const timeframes = [
   { value: '7d', label: '7 Days' },
   { value: '30d', label: '30 Days' },
@@ -23,18 +25,33 @@ const timeframes = [
 ]
 
 export default function YearnDashboard() {
-  const { vaults, loading: loadingVaults, error: errorVaults } = useVaults()
+  // const { vaults, loading: loadingVaults, error: errorVaults } = useVaults()
+  const vaults = vaultsDataCropped as unknown as Vault[]
   const [selectedVault, setSelectedVault] = useState<Vault | null>(null)
   const [timeframe, setTimeframe] = useState('30d')
   const [loadingOverlay, setLoadingOverlay] = useState(false)
+  const [timeseriesData, setTimeseriesData] = useState<Timeseries>({
+    address: '',
+    chainId: 0,
+    apy: [],
+    tvl: [],
+  })
 
-  const {
-    fetchTimeseries,
-    timeseriesData,
-    loading: loadingTimeseries,
-    error: errorTimeseries,
-  } = useVaultTimeseries()
-  console.log('timeseriesData: ', timeseriesData)
+  // const {
+  //   fetchTimeseries,
+  //   timeseriesData,
+  //   loading: loadingTimeseries,
+  //   error: errorTimeseries,
+  // } = useVaultTimeseries()
+  // console.log('timeseriesData: ', timeseriesData)
+
+  const fetchTimeseries = async (selectedVault: Vault) => {
+    const timeseriesData = await import(
+      `@/graphql/data/${selectedVault.address}.json`
+    )
+    console.log('timeseriesData1: ', timeseriesData.address)
+    return timeseriesData
+  }
 
   useEffect(() => {
     if (!selectedVault && vaults && vaults.length > 0) {
@@ -43,48 +60,63 @@ export default function YearnDashboard() {
   }, [vaults])
 
   useEffect(() => {
-    if (selectedVault) {
-      setLoadingOverlay(true) // Show loading overlay
-      fetchTimeseries({
-        variables: {
-          chainId: selectedVault.chainId,
-          address: selectedVault.address,
-          label: 'apy-bwd-delta-pps',
-          component: 'weeklyNet',
-          limit: 1000,
-        },
-      }).finally(() => setLoadingOverlay(false)) // Hide loading overlay
+    const fetchData = async () => {
+      if (selectedVault) {
+        setLoadingOverlay(true) // Show loading overlay
+        const fetchedTimeSeries = await fetchTimeseries(selectedVault)
+          // fetchTimeseries({
+          //   variables: {
+          //     chainId: selectedVault.chainId,
+          //     address: selectedVault.address,
+          //     label: 'apy-bwd-delta-pps',
+          //     component: 'weeklyNet',
+          //     limit: 1000,
+          //   },
+          // })
+          .finally(() => setLoadingOverlay(false))
+        setTimeseriesData(fetchedTimeSeries)
+        console.log('fetchedTimeSeries1: ', fetchedTimeSeries.address)
+      }
     }
-  }, [selectedVault, timeframe])
+    fetchData()
+  }, [selectedVault])
 
-  const [chartData, setChartData] = useState<any[]>([])
-  console.log('chartData: ', chartData)
+  const [apyChartData, setApyChartData] = useState<any[]>([])
+  const [tvlChartData, setTvlChartData] = useState<any[]>([])
+  console.log('timeseriesData: ', timeseriesData)
+  console.log('chartData: ', apyChartData)
 
   useEffect(() => {
-    if (timeseriesData && timeseriesData.length > 0) {
-      const transformedData = timeseriesData.map((dataPoint) => ({
+    if (timeseriesData) {
+      const transformedApyData = timeseriesData.apy.map((dataPoint) => ({
         date: formatUnixTimestamp(dataPoint.time),
         value: dataPoint.value * 100,
       }))
-      setChartData(transformedData)
+      setApyChartData(transformedApyData)
+      //TODO: get asset to convert to USD
+      const transformedTvlData = timeseriesData.tvl.map((dataPoint) => ({
+        date: formatUnixTimestamp(dataPoint.time),
+        value: dataPoint.value,
+      }))
+      setTvlChartData(transformedTvlData)
     }
   }, [timeseriesData])
 
-  if (loadingVaults || !selectedVault) {
-    return (
-      <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-75">
-        <div className="loader">Loading...</div>
-      </div>
-    )
-  }
+  // if (loadingVaults || !selectedVault) {
+  //   return (
+  //     <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-75">
+  //       <div className="loader">Loading...</div>
+  //     </div>
+  //   )
+  // }
 
-  if (errorVaults || errorTimeseries) {
-    return (
-      <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-75">
-        <div className="loader">Error Loading Data</div>
-      </div>
-    )
-  }
+  // if (errorVaults || errorTimeseries) {
+  //   return (
+  //     <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-75">
+  //       <div className="loader">Error Loading Data</div>
+  //     </div>
+  //   )
+  // }
 
   return (
     <div className="flex flex-col gap-6 p-6">
@@ -108,14 +140,14 @@ export default function YearnDashboard() {
           title="Current APY"
           icon={<TrendingUp className="h-4 w-4 text-muted-foreground" />}
           value={
-            chartData.length > 0
-              ? chartData[chartData.length - 1].value.toFixed(2) + '%'
+            apyChartData.length > 0
+              ? apyChartData[apyChartData.length - 1].value.toFixed(2) + '%'
               : 'N/A'
           }
           subtitle={`15-day moving average: ${
-            chartData.length > 0
+            apyChartData.length > 0
               ? (
-                  chartData
+                  apyChartData
                     .slice(-15)
                     .reduce((sum, data) => sum + data.value, 0) / 15
                 ).toFixed(2) + '%'
@@ -125,8 +157,8 @@ export default function YearnDashboard() {
         <MetricsCard
           title="TVL"
           icon={<DollarSign className="h-4 w-4 text-muted-foreground" />}
-          value={`$${(selectedVault.tvl.close / 1000000).toFixed(2)}M`}
-          subtitle={`Last updated: ${formatUnixTimestamp(selectedVault.tvl.blockTime)}`}
+          value={`$${selectedVault ? (selectedVault.tvl.close / 1000000).toFixed(2) : 'N/A'}M`} // added null check for selectedVault
+          subtitle={`Last updated: ${selectedVault ? formatUnixTimestamp(selectedVault.tvl.blockTime) : 'N/A'}`}
         />
       </div>
 
@@ -137,9 +169,9 @@ export default function YearnDashboard() {
       >
         {timeframes.map((tf) => (
           <TabsContent key={tf.value} value={tf.value} className="space-y-4">
-            <APYChart chartData={chartData} timeframe={tf.value} />{' '}
+            <APYChart chartData={apyChartData} timeframe={tf.value} />{' '}
             {/* moved APY chart */}
-            <TVLChart chartData={chartData} timeframe={tf.value} />{' '}
+            <TVLChart chartData={apyChartData} timeframe={tf.value} />{' '}
             {/* moved TVL chart */}
           </TabsContent>
         ))}

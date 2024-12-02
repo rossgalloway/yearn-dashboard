@@ -35,7 +35,7 @@ export function VaultSelector({
         <SelectContent>
           {vaults.map((vault) => (
             <SelectItem key={vault.address} value={vault.address}>
-              {vault.name}
+              {vault.name} {vault.address}
             </SelectItem>
           ))}
         </SelectContent>
