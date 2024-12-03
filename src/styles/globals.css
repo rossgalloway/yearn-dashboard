@@ -24,7 +24,9 @@
     --destructive-foreground: 210 40% 98%;
     --ring: 215 20.2% 65.1%;
     --radius: 0.5rem;
-    --chart-1: black;
+    --chart-1: #46a2ff;
+    --chart-2: #a4bbd2;
+    --chart-3: #6786db;
   }
 
   .dark {
@@ -47,6 +49,8 @@
     --destructive: 0 63% 31%;
     --destructive-foreground: 210 40% 98%;
     --ring: 216 34% 17%;
+    --chart-1: #46a2ff;
+    --chart-2: #a4bbd2;
   }
 }
 

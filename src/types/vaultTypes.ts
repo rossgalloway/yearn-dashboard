@@ -18,6 +18,22 @@ export type Vault = {
     label: string
   }
   pricePerShare: number
+  meta: {
+    displayName: string
+    displaySymbol: string
+    description: string
+    protocols: string
+    token: {
+      category: string
+      description: string
+      displayName: string
+      displaySymbol: string
+      icon: string
+      type: string
+    }
+  }
+  strategies: string
+  vaultType: string
 }
 
 export interface TimeseriesDataPoint {

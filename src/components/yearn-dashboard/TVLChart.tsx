@@ -13,22 +13,19 @@ export const TVLChart: React.FC<TVLChartProps> = ({ chartData, timeframe }) => {
   return (
     <ChartContainer
       config={{
-        value: { label: 'TVL (millions)', color: 'hsl(var(--chart-3))' },
+        value: { label: 'TVL (millions)', color: 'var(--chart-1)' },
       }}
+      style={{ height: 'inherit' }}
     >
       <ResponsiveContainer width="100%" height="100%">
         <ComposedChart data={filteredData}>
           <XAxis dataKey="date" />
           <YAxis
-            domain={['auto', 'auto']}
+            domain={[0, 'auto']}
             tickFormatter={(value) => `$${(value / 1_000_000).toFixed(1)}M`}
           />
           <ChartTooltip />
-          <Bar
-            dataKey="value"
-            fill="var(--color-value)"
-            radius={[4, 4, 0, 0]}
-          />
+          <Bar dataKey="TVL" fill="var(--color-value)" radius={[4, 4, 0, 0]} />
         </ComposedChart>
       </ResponsiveContainer>
     </ChartContainer>

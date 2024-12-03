@@ -1,21 +1,40 @@
 // src/graphql/queries/vaults.ts
 import { gql } from '@apollo/client'
-import { VAULT_FIELDS } from '../fragments/vaultFields'
 
 export const GET_VAULTS = gql`
-  query GetVaults($chainId: Int) {
-    vaults(chainId: $chainId) {
-      ...VaultFields
+  query GetVaults {
+    yearn
+    v3
+    address
+    name
+    chainId
+    asset {
+      name
+      symbol
     }
-  }
-  ${VAULT_FIELDS}
-`
-
-export const GET_VAULT = gql`
-  query GetVault($chainId: Int, $address: String) {
-    vault(chainId: $chainId, address: $address) {
-      ...VaultFields
+    apiVersion
+    tvl {
+      blockTime
+      close
+      component
+      label
     }
+    pricePerShare
+    meta {
+      displayName
+      displaySymbol
+      description
+      protocols
+      token {
+        category
+        description
+        displayName
+        displaySymbol
+        icon
+        type
+      }
+    }
+    strategies
+    vaultType
   }
-  ${VAULT_FIELDS}
 `

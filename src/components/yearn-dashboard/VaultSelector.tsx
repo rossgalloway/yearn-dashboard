@@ -27,15 +27,16 @@ export function VaultSelector({
           const currentVault =
             vaults.find((v) => v.address === value) || vaults[0]
           setSelectedVault(currentVault)
+          console.log('selected vault: ', currentVault)
         }}
       >
-        <SelectTrigger className="w-[180px]">
+        <SelectTrigger className="w-[300px]">
           <SelectValue placeholder="Select vault" />
         </SelectTrigger>
         <SelectContent>
           {vaults.map((vault) => (
             <SelectItem key={vault.address} value={vault.address}>
-              {vault.name} {vault.address}
+              {vault.name}
             </SelectItem>
           ))}
         </SelectContent>

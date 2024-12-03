@@ -1,7 +1,7 @@
 // src/hooks/useVaultTimeseries.ts
 import { useLazyQuery } from '@apollo/client'
 import { GET_VAULT_TIMESERIES } from '@/graphql/queries/timeseries'
-import type { TimeseriesData } from '@/types/vaultTypes'
+import type { Timeseries } from '@/types/vaultTypes'
 
 export type TimeseriesParams = {
   chainId: number
@@ -13,7 +13,7 @@ export type TimeseriesParams = {
 
 export function useVaultTimeseries() {
   const [fetchTimeseries, { data, loading, error }] = useLazyQuery<
-    { timeseries: TimeseriesData[] },
+    { timeseries: Timeseries[] },
     TimeseriesParams
   >(GET_VAULT_TIMESERIES)
 
