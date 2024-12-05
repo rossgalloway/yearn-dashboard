@@ -26,3 +26,52 @@ export const GET_VAULT_TIMESERIES = gql`
     }
   }
 `
+
+export const queryAPY = gql`
+  query ApyQuery(
+    $label: String!
+    $chainId: Int
+    $address: String
+    $limit: Int
+    $component: String
+  ) {
+    timeseries(
+      label: $label
+      chainId: $chainId
+      address: $address
+      limit: $limit
+      component: $component
+    ) {
+      chainId
+      address
+      label
+      component
+      period
+      time
+      value
+    }
+  }
+`
+
+export const queryTVL = gql`
+  query TvlQuery(
+    $label: String!
+    $chainId: Int
+    $address: String
+    $limit: Int
+  ) {
+    timeseries(
+      label: $label
+      chainId: $chainId
+      address: $address
+      limit: $limit
+    ) {
+      chainId
+      address
+      label
+      period
+      time
+      value
+    }
+  }
+`

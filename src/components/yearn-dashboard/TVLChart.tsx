@@ -6,6 +6,10 @@ interface TVLChartProps {
   timeframe: string
 }
 
+const formatTooltipValue = (value: number) => {
+  return `$${value.toLocaleString(undefined, { maximumFractionDigits: 0 })}`
+}
+
 // Converted to a React function component with arrow syntax
 export const TVLChart: React.FC<TVLChartProps> = ({ chartData, timeframe }) => {
   const filteredData = chartData.slice(-getTimeframeLimit(timeframe))
@@ -23,8 +27,17 @@ export const TVLChart: React.FC<TVLChartProps> = ({ chartData, timeframe }) => {
           <YAxis
             domain={[0, 'auto']}
             tickFormatter={(value) => `$${(value / 1_000_000).toFixed(1)}M`}
+            label={{
+              value: 'TVL ($ millions)',
+              angle: -90,
+              position: 'insideLeft', // Changed from 'center' to 'insideLeft'
+              offset: 0, // Negative offset moves label closer to axis
+              style: {
+                textAnchor: 'middle',
+              },
+            }}
           />
-          <ChartTooltip />
+          <ChartTooltip formatter={formatTooltipValue} />
           <Bar dataKey="TVL" fill="var(--color-value)" radius={[4, 4, 0, 0]} />
         </ComposedChart>
       </ResponsiveContainer>

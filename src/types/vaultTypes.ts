@@ -37,6 +37,8 @@ export type Vault = {
 }
 
 export interface TimeseriesDataPoint {
+  address?: string
+  chainId?: number
   label: string
   component?: string // Optional, as it's not present in TVL data points
   period: string

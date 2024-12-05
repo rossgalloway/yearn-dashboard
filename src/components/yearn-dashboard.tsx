@@ -54,10 +54,26 @@ const calculateSMA = (
 }
 
 export default function YearnDashboard() {
-  // const { vaults, loading: loadingVaults, error: errorVaults } = useVaults()
-  const vaults = vaultsDataCropped as unknown as Vault[]
+  const {
+    vaults,
+    availableChains: availableChainNumbers,
+    loading: loadingVaults,
+    error: errorVaults,
+  } = useVaults()
+  console.log('vaults: ', vaults)
+
+  const availableChains: Record<number, string> = availableChainNumbers.reduce(
+    (acc, chainId) => {
+      acc[chainId] = CHAIN_ID_TO_NAME[chainId] || 'Unknown' // map numbers to ChainId enum and maintain both id and name
+      return acc
+    },
+    {} as Record<number, string>,
+  )
+  console.log('availableChains: ', availableChains)
+
+  // const vaults = vaultsDataCropped as unknown as Vault[]
   const [selectedVault, setSelectedVault] = useState<Vault | null>(null)
-  const [filteredVaults, setFilteredVaults] = useState<Vault[]>(vaults)
+  const [filteredVaults, setFilteredVaults] = useState<Vault[]>(vaults || [])
   const [timeframe, setTimeframe] = useState('30d')
   const [loadingOverlay, setLoadingOverlay] = useState(false)
   const [timeseriesData, setTimeseriesData] = useState<Timeseries>({
@@ -66,93 +82,81 @@ export default function YearnDashboard() {
     apy: [],
     tvl: [],
   })
-  const [filters, setFilters] = useState<{
-    version: string
-    chainId: ChainId | null
-    search: string
-  }>({
-    version: '',
-    chainId: null,
-    search: '',
-  })
 
-  const availableChains = getAvailableChains(vaults)
+  const {
+    fetchApy,
+    fetchTvl,
+    apyData,
+    tvlData,
+    loading: loadingTimeseries,
+    error: errorTimeseries,
+  } = useVaultTimeseries()
+  console.log('timeseriesData: ', timeseriesData)
 
-  const handleFilterChange = (newFilters: {
-    version: string
-    chainId: ChainId | null
-    search: string
-  }) => {
-    setFilters(newFilters)
-    let filtered = vaults
-
-    if (newFilters.version) {
-      filtered = filtered.filter((vault) =>
-        newFilters.version === 'v2'
-          ? vault.apiVersion.startsWith('0')
-          : vault.apiVersion.startsWith('3'),
-      )
-    }
-
-    if (newFilters.chainId) {
-      const chainIdNumber = Number(newFilters.chainId) // Convert chainId to number
-      console.log('new chainId:', chainIdNumber)
-      filtered = filtered.filter((vault) => vault.chainId === chainIdNumber)
-      console.log('filtered chainId: ', filtered)
-    }
-
-    if (newFilters.search) {
-      filtered = filtered.filter(
-        (vault) =>
-          vault.address.includes(newFilters.search) ||
-          vault.name.toLowerCase().includes(newFilters.search.toLowerCase()),
-      )
-    }
-
-    setFilteredVaults(filtered)
-  }
-
-  // const {
-  //   fetchTimeseries,
-  //   timeseriesData,
-  //   loading: loadingTimeseries,
-  //   error: errorTimeseries,
-  // } = useVaultTimeseries()
-  // console.log('timeseriesData: ', timeseriesData)
-
-  const fetchTimeseries = async (selectedVault: Vault) => {
-    const timeseriesData = await import(
-      `@/graphql/data/${selectedVault.address}.json`
-    )
-    return timeseriesData
-  }
+  // const fetchTimeseries = async (selectedVault: Vault) => {
+  //   const timeseriesData = await import(
+  //     `@/graphql/data/${selectedVault.address}.json`
+  //   )
+  //   return timeseriesData
+  // }
 
   useEffect(() => {
-    if (!selectedVault && filteredVaults && filteredVaults.length > 0) {
-      setSelectedVault(filteredVaults[0])
+    if (!selectedVault && vaults && vaults.length > 0) {
+      setFilteredVaults(vaults)
+      setSelectedVault(vaults[0])
     }
-  }, [filteredVaults])
+  }, [vaults])
 
   useEffect(() => {
     const fetchData = async () => {
       if (selectedVault) {
         setLoadingOverlay(true) // Show loading overlay
-        const fetchedTimeSeries = await fetchTimeseries(selectedVault)
-          // fetchTimeseries({
-          //   variables: {
-          //     chainId: selectedVault.chainId,
-          //     address: selectedVault.address,
-          //     label: 'apy-bwd-delta-pps',
-          //     component: 'weeklyNet',
-          //     limit: 1000,
-          //   },
-          // })
-          .finally(() => setLoadingOverlay(false))
-        setTimeseriesData(fetchedTimeSeries)
+
+        try {
+          await Promise.all([
+            fetchApy({
+              variables: {
+                chainId: selectedVault.chainId,
+                address: selectedVault.address,
+                label: 'apy-bwd-delta-pps',
+                component: 'weeklyNet',
+                limit: 1000,
+              },
+            }),
+            fetchTvl({
+              variables: {
+                chainId: selectedVault.chainId,
+                address: selectedVault.address,
+                label: 'tvl',
+                limit: 1000,
+              },
+            }),
+          ])
+
+          // Clean the fetched data by removing chainId and address
+          const cleanApyData: TimeseriesDataPoint[] =
+            apyData?.map(({ chainId, address, ...rest }) => rest) || []
+          const cleanTvlData: TimeseriesDataPoint[] =
+            tvlData?.map(({ chainId, address, ...rest }) => rest) || []
+
+          // Combine the cleaned data
+          const combinedData: Timeseries = {
+            chainId: selectedVault.chainId,
+            address: selectedVault.address,
+            apy: cleanApyData,
+            tvl: cleanTvlData,
+          }
+
+          setTimeseriesData(combinedData)
+        } catch (error) {
+          console.error('Error fetching data:', error)
+        } finally {
+          setLoadingOverlay(false) // Hide loading overlay
+        }
       }
     }
     fetchData()
-  }, [selectedVault])
+  }, [selectedVault, fetchApy, fetchTvl, apyData, tvlData])
 
   const [apyChartData, setApyChartData] = useState<any[]>([])
   const [tvlChartData, setTvlChartData] = useState<any[]>([])
@@ -180,21 +184,21 @@ export default function YearnDashboard() {
     }
   }, [timeseriesData])
 
-  // if (loadingVaults || !selectedVault) {
-  //   return (
-  //     <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-75">
-  //       <div className="loader">Loading...</div>
-  //     </div>
-  //   )
-  // }
+  if (loadingVaults || !selectedVault) {
+    return (
+      <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-75">
+        <div className="loader">Loading...</div>
+      </div>
+    )
+  }
 
-  // if (errorVaults || errorTimeseries) {
-  //   return (
-  //     <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-75">
-  //       <div className="loader">Error Loading Data</div>
-  //     </div>
-  //   )
-  // }
+  if (errorVaults || errorTimeseries) {
+    return (
+      <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-75">
+        <div className="loader">Error Loading Data</div>
+      </div>
+    )
+  }
 
   return (
     <div className="flex flex-col gap-6 p-6">
@@ -204,53 +208,51 @@ export default function YearnDashboard() {
         </div>
       )}
       <div className="flex flex-col gap-2">
-        <h1 className="text-2xl font-bold">Yearn Vault Analytics</h1>
-        <div className="flex flex-row gap-2">
+        <div className="flex flex-row gap-2 items-center">
+          <img
+            src="/static/icons/logo.svg"
+            alt="Yearn Logo"
+            className="w-6 h-6"
+          />
+          <h2 className="text-xl font-bold pr-4">Vault Analytics</h2>
           <VaultSelector
             vaults={filteredVaults}
             selectedVault={selectedVault}
             setSelectedVault={setSelectedVault}
           />
           <VaultFilter
-            onFilterChange={handleFilterChange}
+            vaults={vaults || []} // provide default empty array
             availableChains={availableChains}
+            setFilteredVaults={setFilteredVaults}
           />
-          <div className="flex flex-wrap gap-2">
-            {filters.version && (
-              <Badge variant="secondary">Version: {filters.version}</Badge>
-            )}
-            {filters.chainId && (
-              <Badge variant="secondary">
-                Chain: {CHAIN_ID_TO_NAME[filters.chainId]}
-              </Badge>
-            )}
-            {filters.search && (
-              <Badge variant="secondary">Search: {filters.search}</Badge>
-            )}
-          </div>
         </div>
         {selectedVault && (
-          <div className="flex flex-row gap-4 items-center text-sm text-gray-500">
-            <Badge variant="secondary">{selectedVault.address}</Badge>
-            <div className="flex gap-2">
-              <a
-                href={`https://yearn.finance/#/vaults/${selectedVault.address}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 hover:text-blue-800"
-              >
-                Yearn ↗
-              </a>
-              <a
-                href={`https://etherscan.io/address/${selectedVault.address}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 hover:text-blue-800"
-              >
-                Etherscan ↗
-              </a>
+          <>
+            <div className="flex flex-row gap-4 items-end text-sm">
+              <h1 className="text-3xl font-bold pl-2 pt-4">
+                {selectedVault.name}
+              </h1>
+              <Badge variant="outline">{selectedVault.address}</Badge>
+              <div className="flex gap-2">
+                <a
+                  href={`https://yearn.finance/#/vaults/${selectedVault.address}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 hover:text-blue-800"
+                >
+                  Yearn ↗
+                </a>
+                <a
+                  href={`https://etherscan.io/address/${selectedVault.address}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 hover:text-blue-800"
+                >
+                  Etherscan ↗
+                </a>
+              </div>
             </div>
-          </div>
+          </>
         )}
       </div>
       <div className="grid gap-4 md:grid-cols-2">
