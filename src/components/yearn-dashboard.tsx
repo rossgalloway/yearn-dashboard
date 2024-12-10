@@ -12,8 +12,6 @@ import { useVaultTimeseries } from '@/hooks/useVaultTimeseries'
 import { InfoIcon, TrendingUp, DollarSign } from 'lucide-react'
 import { formatUnixTimestamp } from '../lib/utils'
 import { TabsContent } from './ui/tabs'
-
-import vaultsDataCropped from '@/graphql/data/vaultsData_cropped.json'
 import {
   Card,
   CardContent,
@@ -26,6 +24,7 @@ import { Popover } from './ui/popover'
 import { CHAIN_ID_TO_NAME, ChainId } from '../constants/chains'
 import VaultFilter from './yearn-dashboard/VaultFilter'
 import { getAvailableChains } from '../utils/filterChains'
+import UpArrow from '../../static/icons/up-arrow.svg'
 
 const timeframes = [
   { value: '7d', label: '7 Days' },
@@ -74,8 +73,9 @@ export default function YearnDashboard() {
   // const vaults = vaultsDataCropped as unknown as Vault[]
   const [selectedVault, setSelectedVault] = useState<Vault | null>(null)
   const [filteredVaults, setFilteredVaults] = useState<Vault[]>(vaults || [])
-  const [timeframe, setTimeframe] = useState('30d')
+  const [timeframe, setTimeframe] = useState('180d')
   const [loadingOverlay, setLoadingOverlay] = useState(false)
+  const [selectVaultOverlay, setSelectVaultOverlay] = useState(false)
   const [timeseriesData, setTimeseriesData] = useState<Timeseries>({
     address: '',
     chainId: 0,
@@ -100,12 +100,12 @@ export default function YearnDashboard() {
   //   return timeseriesData
   // }
 
-  useEffect(() => {
-    if (!selectedVault && vaults && vaults.length > 0) {
-      setFilteredVaults(vaults)
-      setSelectedVault(vaults[0])
-    }
-  }, [vaults])
+  // useEffect(() => {
+  //   if (!selectedVault && vaults && vaults.length > 0) {
+  //     setFilteredVaults(vaults)
+  //     setSelectedVault(vaults[0])
+  //   }
+  // }, [vaults])
 
   useEffect(() => {
     const fetchData = async () => {
@@ -184,7 +184,7 @@ export default function YearnDashboard() {
     }
   }, [timeseriesData])
 
-  if (loadingVaults || !selectedVault) {
+  if (loadingVaults && !selectedVault) {
     return (
       <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-75">
         <div className="loader">Loading...</div>
@@ -200,13 +200,43 @@ export default function YearnDashboard() {
     )
   }
 
+  const SelectVaultOverlay: React.FC = () => {
+    return (
+      <div className="absolute inset-0 flex flex-col items-center justify-center bg-white bg-opacity-90 z-10">
+        <div
+          className="absolute flex flex-col items-center justify-center"
+          style={{ top: '-23px', left: '215px' }}
+        >
+          <UpArrow className="w-6 h-6 font-bold text-[var(--chart-1)]" />
+          <div className="text-md text-[var(--chart-1)] font-bold">
+            Select Vault
+          </div>
+        </div>
+        <div
+          className="absolute flex flex-col items-center justify-center"
+          style={{ top: '-25px', left: '470px' }}
+        >
+          <UpArrow className="w-6 h-6 font-bold text-[var(--chart-1)]" />
+          <div className="flex flex-col items-center text-md text-[var(--chart-1)] font-bold">
+            <span>Filter and</span>
+            <span>Search Vaults</span>
+          </div>
+        </div>
+        <div
+          className="absolute flex flex-col items-center justify-center"
+          style={{ top: '-25px', left: '600px' }}
+        >
+          <UpArrow className="w-6 h-6 font-bold text-[var(--chart-1)]" />
+          <div className="text-md text-[var(--chart-1)] font-bold">
+            Active Filters
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="flex flex-col gap-6 p-6">
-      {loadingOverlay && (
-        <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-75">
-          <div className="loader">Loading...</div>
-        </div>
-      )}
       <div className="flex flex-col gap-2">
         <div className="flex flex-row gap-2 items-center">
           <img
@@ -255,85 +285,93 @@ export default function YearnDashboard() {
           </>
         )}
       </div>
-      <div className="grid gap-4 md:grid-cols-2">
+      <div className="relative flex flex-col gap-4">
+        {!selectedVault && <SelectVaultOverlay />}
+        {loadingOverlay && (
+          <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-75">
+            <div className="loader">Loading...</div>
+          </div>
+        )}
         <div className="grid gap-4 md:grid-cols-2">
+          <div className="grid gap-4 md:grid-cols-2">
+            <MetricsCard
+              title="Current APY"
+              icon={<TrendingUp className="h-4 w-4 text-muted-foreground" />}
+              value={
+                apyChartData.length > 0
+                  ? apyChartData[apyChartData.length - 1].APY.toFixed(2) + '%'
+                  : 'N/A'
+              }
+              subtitle={`15-day moving average: ${
+                apyChartData.length > 0
+                  ? (
+                      apyChartData
+                        .slice(-15)
+                        .reduce((sum, data) => sum + data.APY, 0) / 15
+                    ).toFixed(2) + '%'
+                  : 'N/A'
+              }`}
+            />
+            <MetricsCard
+              title="15-Day Average APY"
+              icon={<TrendingUp className="h-4 w-4 text-muted-foreground" />}
+              value={
+                apyChartData.length > 0
+                  ? (
+                      apyChartData
+                        .slice(-15)
+                        .reduce((sum, data) => sum + data.APY, 0) / 15
+                    ).toFixed(2) + '%'
+                  : 'N/A'
+              }
+              subtitle={''}
+            />
+          </div>
           <MetricsCard
-            title="Current APY"
-            icon={<TrendingUp className="h-4 w-4 text-muted-foreground" />}
-            value={
-              apyChartData.length > 0
-                ? apyChartData[apyChartData.length - 1].APY.toFixed(2) + '%'
-                : 'N/A'
-            }
-            subtitle={`15-day moving average: ${
-              apyChartData.length > 0
-                ? (
-                    apyChartData
-                      .slice(-15)
-                      .reduce((sum, data) => sum + data.APY, 0) / 15
-                  ).toFixed(2) + '%'
-                : 'N/A'
-            }`}
-          />
-          <MetricsCard
-            title="15-Day Average APY"
-            icon={<TrendingUp className="h-4 w-4 text-muted-foreground" />}
-            value={
-              apyChartData.length > 0
-                ? (
-                    apyChartData
-                      .slice(-15)
-                      .reduce((sum, data) => sum + data.APY, 0) / 15
-                  ).toFixed(2) + '%'
-                : 'N/A'
-            }
-            subtitle={''}
+            title="TVL"
+            icon={<DollarSign className="h-4 w-4 text-muted-foreground" />}
+            value={`$${selectedVault ? (selectedVault.tvl.close / 1000000).toFixed(2) : 'N/A'}M`} // added null check for selectedVault
+            subtitle={`Last updated: ${selectedVault ? formatUnixTimestamp(selectedVault.tvl.blockTime) : 'N/A'}`}
           />
         </div>
-        <MetricsCard
-          title="TVL"
-          icon={<DollarSign className="h-4 w-4 text-muted-foreground" />}
-          value={`$${selectedVault ? (selectedVault.tvl.close / 1000000).toFixed(2) : 'N/A'}M`} // added null check for selectedVault
-          subtitle={`Last updated: ${selectedVault ? formatUnixTimestamp(selectedVault.tvl.blockTime) : 'N/A'}`}
-        />
-      </div>
 
-      <TimeframeTabs
-        timeframes={timeframes}
-        timeframe={timeframe}
-        setTimeframe={setTimeframe}
-      >
-        {timeframes.map((tf) => (
-          <TabsContent key={tf.value} value={tf.value}>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <Card>
-                <CardHeader>
-                  <CardTitle>APY Performance</CardTitle>
-                  <CardDescription>
-                    Raw APY and 15-day moving average over {tf.label}.
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="h-[400px]">
-                  <APYChart chartData={apyChartData} timeframe={tf.value} />{' '}
-                  {/* moved APY chart */}
-                </CardContent>
-              </Card>
-              <Card>
-                <CardHeader>
-                  <CardTitle>TVL</CardTitle>
-                  <CardDescription>
-                    Total value deposited over {tf.label}.
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="h-[400px]">
-                  <TVLChart chartData={tvlChartData} timeframe={tf.value} />{' '}
-                  {/* moved TVL chart */}
-                </CardContent>
-              </Card>
-            </div>
-          </TabsContent>
-        ))}
-      </TimeframeTabs>
+        <TimeframeTabs
+          timeframes={timeframes}
+          timeframe={timeframe}
+          setTimeframe={setTimeframe}
+        >
+          {timeframes.map((tf) => (
+            <TabsContent key={tf.value} value={tf.value}>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <Card>
+                  <CardHeader>
+                    <CardTitle>APY Performance</CardTitle>
+                    <CardDescription>
+                      Raw APY and 15-day moving average over {tf.label}.
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="h-[400px]">
+                    <APYChart chartData={apyChartData} timeframe={tf.value} />{' '}
+                    {/* moved APY chart */}
+                  </CardContent>
+                </Card>
+                <Card>
+                  <CardHeader>
+                    <CardTitle>TVL</CardTitle>
+                    <CardDescription>
+                      Total value deposited over {tf.label}.
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="h-[400px]">
+                    <TVLChart chartData={tvlChartData} timeframe={tf.value} />{' '}
+                    {/* moved TVL chart */}
+                  </CardContent>
+                </Card>
+              </div>
+            </TabsContent>
+          ))}
+        </TimeframeTabs>
+      </div>
     </div>
   )
 }

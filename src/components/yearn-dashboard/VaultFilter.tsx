@@ -1,5 +1,5 @@
 // src/components/VaultFilter.tsx
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Popover, PopoverTrigger, PopoverContent } from '../ui/popover'
 import { CHAIN_ID_TO_NAME, ChainId } from '@/constants/chains'
 import { Vault } from '../../types/vaultTypes'
@@ -30,7 +30,6 @@ const VaultFilter: React.FC<VaultFilterProps> = ({
     chainId: null,
     search: '',
   })
-  console.log('availableChains2: ', availableChains)
 
   const onFilterChange = (newFilters: {
     version: string
@@ -82,6 +81,15 @@ const VaultFilter: React.FC<VaultFilterProps> = ({
   if (filters.version || filters.chainId || filters.search) {
     isFilterActive = true
   }
+
+  // Initialize the filter on the first render. Set vault type to v3 and chain to 1.
+  useEffect(() => {
+    if (!filters.version && !filters.chainId && !filters.search) {
+      setVersion('v3')
+      setChainId(1 as ChainId)
+      onFilterChange({ version: 'v3', chainId: 1 as ChainId, search: '' })
+    }
+  }, [onFilterChange])
 
   return (
     <>

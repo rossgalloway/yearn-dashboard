@@ -17,7 +17,7 @@ export const TimeframeTabs: React.FC<TimeframeTabsProps> = ({
 }) => {
   return (
     <Tabs
-      defaultValue="30d"
+      defaultValue="180d"
       className="space-y-4"
       value={timeframe}
       onValueChange={setTimeframe}
