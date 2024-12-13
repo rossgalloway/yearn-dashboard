@@ -11,7 +11,7 @@ import { useVaults } from '@/hooks/useVaults'
 import { useVaultTimeseries } from '@/hooks/useVaultTimeseries'
 import { InfoIcon, TrendingUp, DollarSign } from 'lucide-react'
 import { formatUnixTimestamp } from '../lib/utils'
-import { TabsContent } from './ui/tabs'
+import { TabsContent, Tabs, TabsList, TabsTrigger } from './ui/tabs'
 import {
   Card,
   CardContent,
@@ -184,6 +184,8 @@ export default function YearnDashboard() {
     }
   }, [timeseriesData])
 
+  const [selectedChart, setSelectedChart] = useState<'APY' | 'TVL'>('APY') // Added state for selected chart
+
   if (loadingVaults && !selectedVault) {
     return (
       <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-75">
@@ -236,7 +238,9 @@ export default function YearnDashboard() {
   }
 
   return (
-    <div className="flex flex-col gap-6 p-6">
+    <div className="flex flex-col gap-6 p-6 max-w-[1200px] mx-auto">
+      {' '}
+      {/* Set max width to 800px and center */}
       <div className="flex flex-col gap-2">
         <div className="flex flex-row gap-2 items-center">
           <img
@@ -292,41 +296,45 @@ export default function YearnDashboard() {
             <div className="loader">Loading...</div>
           </div>
         )}
-        <div className="grid gap-4 md:grid-cols-2">
-          <div className="grid gap-4 md:grid-cols-2">
-            <MetricsCard
-              title="Current APY"
-              icon={<TrendingUp className="h-4 w-4 text-muted-foreground" />}
-              value={
-                apyChartData.length > 0
-                  ? apyChartData[apyChartData.length - 1].APY.toFixed(2) + '%'
-                  : 'N/A'
-              }
-              subtitle={`15-day moving average: ${
-                apyChartData.length > 0
-                  ? (
-                      apyChartData
-                        .slice(-15)
-                        .reduce((sum, data) => sum + data.APY, 0) / 15
-                    ).toFixed(2) + '%'
-                  : 'N/A'
-              }`}
-            />
-            <MetricsCard
-              title="15-Day Average APY"
-              icon={<TrendingUp className="h-4 w-4 text-muted-foreground" />}
-              value={
-                apyChartData.length > 0
-                  ? (
-                      apyChartData
-                        .slice(-15)
-                        .reduce((sum, data) => sum + data.APY, 0) / 15
-                    ).toFixed(2) + '%'
-                  : 'N/A'
-              }
-              subtitle={''}
-            />
-          </div>
+        <div className="grid gap-4 md:grid-cols-4">
+          <MetricsCard
+            title="Raw Current APY"
+            icon={<TrendingUp className="h-4 w-4 text-muted-foreground" />}
+            value={
+              apyChartData.length > 0
+                ? apyChartData[apyChartData.length - 1].APY.toFixed(2) + '%'
+                : 'N/A'
+            }
+            subtitle={''}
+          />
+          <MetricsCard
+            title="15-Day Average APY"
+            icon={<TrendingUp className="h-4 w-4 text-muted-foreground" />}
+            value={
+              apyChartData.length > 0
+                ? (
+                    apyChartData
+                      .slice(-15)
+                      .reduce((sum, data) => sum + data.APY, 0) / 15
+                  ).toFixed(2) + '%'
+                : 'N/A'
+            }
+            subtitle={''}
+          />
+          <MetricsCard
+            title="30-Day Average APY"
+            icon={<TrendingUp className="h-4 w-4 text-muted-foreground" />}
+            value={
+              apyChartData.length > 0
+                ? (
+                    apyChartData
+                      .slice(-30)
+                      .reduce((sum, data) => sum + data.APY, 0) / 30
+                  ).toFixed(2) + '%'
+                : 'N/A'
+            }
+            subtitle={''}
+          />
           <MetricsCard
             title="TVL"
             icon={<DollarSign className="h-4 w-4 text-muted-foreground" />}
@@ -334,7 +342,17 @@ export default function YearnDashboard() {
             subtitle={`Last updated: ${selectedVault ? formatUnixTimestamp(selectedVault.tvl.blockTime) : 'N/A'}`}
           />
         </div>
-
+        <Tabs
+          value={selectedChart}
+          onValueChange={(value: string) =>
+            setSelectedChart(value as 'APY' | 'TVL')
+          }
+        >
+          <TabsList>
+            <TabsTrigger value="APY">APY Chart</TabsTrigger>
+            <TabsTrigger value="TVL">TVL Chart</TabsTrigger>
+          </TabsList>
+        </Tabs>
         <TimeframeTabs
           timeframes={timeframes}
           timeframe={timeframe}
@@ -342,31 +360,72 @@ export default function YearnDashboard() {
         >
           {timeframes.map((tf) => (
             <TabsContent key={tf.value} value={tf.value}>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <Card>
-                  <CardHeader>
-                    <CardTitle>APY Performance</CardTitle>
-                    <CardDescription>
-                      Raw APY and 15-day moving average over {tf.label}.
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="h-[400px]">
-                    <APYChart chartData={apyChartData} timeframe={tf.value} />{' '}
-                    {/* moved APY chart */}
-                  </CardContent>
-                </Card>
-                <Card>
-                  <CardHeader>
-                    <CardTitle>TVL</CardTitle>
-                    <CardDescription>
-                      Total value deposited over {tf.label}.
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="h-[400px]">
-                    <TVLChart chartData={tvlChartData} timeframe={tf.value} />{' '}
-                    {/* moved TVL chart */}
-                  </CardContent>
-                </Card>
+              <div className="grid grid-cols-1 gap-4">
+                {' '}
+                {/* Changed to single column layout */}
+                <div className="relative">
+                  {selectedChart === 'APY' && (
+                    <>
+                      <Card className="bg-transparent">
+                        <CardHeader>
+                          <CardTitle>
+                            APY Performance (TVL shown ghosted)
+                          </CardTitle>
+                          <CardDescription>
+                            Raw APY, 15-day, and 30-day moving averages over{' '}
+                            {tf.label}.
+                          </CardDescription>
+                        </CardHeader>
+                        <CardContent className="h-[400px] relative">
+                          <APYChart
+                            chartData={apyChartData}
+                            timeframe={tf.value}
+                          />
+                          <div className="absolute inset-0 p-6 pt-0 opacity-20 h-[400px] pointer-events-none">
+                            {/* Ghosted TVL chart */}
+                            <TVLChart
+                              chartData={tvlChartData}
+                              timeframe={tf.value}
+                              hideAxes={true} // Hide axes
+                              hideTooltip={true}
+                            />
+                          </div>
+                          {/* Render APY chart */}
+                        </CardContent>
+                      </Card>
+                    </>
+                  )}
+                  {selectedChart === 'TVL' && (
+                    <>
+                      <Card className="bg-transparent">
+                        {' '}
+                        {/* Set background to transparent */}
+                        <CardHeader>
+                          <CardTitle>TVL (APY shown ghosted)</CardTitle>
+                          <CardDescription>
+                            Total value deposited over {tf.label}.
+                          </CardDescription>
+                        </CardHeader>
+                        <CardContent className="h-[400px] relative">
+                          <TVLChart
+                            chartData={tvlChartData}
+                            timeframe={tf.value}
+                          />{' '}
+                          <div className="absolute inset-0 p-6 pt-0 opacity-20 h-[400px] pointer-events-none">
+                            {' '}
+                            {/* Ghosted APY chart */}
+                            <APYChart
+                              chartData={apyChartData}
+                              timeframe={tf.value}
+                              hideAxes
+                              hideTooltip
+                            />
+                          </div>
+                        </CardContent>
+                      </Card>
+                    </>
+                  )}
+                </div>
               </div>
             </TabsContent>
           ))}
