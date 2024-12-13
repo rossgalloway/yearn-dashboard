@@ -51,6 +51,7 @@ export interface Timeseries {
   chainId: number
   apy: TimeseriesDataPoint[]
   tvl: TimeseriesDataPoint[]
+  pps: TimeseriesDataPoint[]
 }
 
 export type TimePeriod = '7d' | '30d' | '90d' | '180d' | '1y' | 'all'

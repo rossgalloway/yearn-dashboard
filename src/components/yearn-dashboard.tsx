@@ -25,6 +25,7 @@ import { CHAIN_ID_TO_NAME, ChainId } from '../constants/chains'
 import VaultFilter from './yearn-dashboard/VaultFilter'
 import { getAvailableChains } from '../utils/filterChains'
 import UpArrow from '../../static/icons/up-arrow.svg'
+import PPSChart from './yearn-dashboard/PPSChart'
 
 const timeframes = [
   { value: '7d', label: '7 Days' },
@@ -81,13 +82,17 @@ export default function YearnDashboard() {
     chainId: 0,
     apy: [],
     tvl: [],
+    pps: [],
   })
 
+  //this fetches the queries to be executed on demand.
   const {
     fetchApy,
     fetchTvl,
+    fetchPps,
     apyData,
     tvlData,
+    ppsData,
     loading: loadingTimeseries,
     error: errorTimeseries,
   } = useVaultTimeseries()
@@ -131,6 +136,13 @@ export default function YearnDashboard() {
                 limit: 1000,
               },
             }),
+            fetchPps({
+              variables: {
+                address: selectedVault.address,
+                label: 'pps',
+                component: 'humanized',
+              },
+            }),
           ])
 
           // Clean the fetched data by removing chainId and address
@@ -138,6 +150,8 @@ export default function YearnDashboard() {
             apyData?.map(({ chainId, address, ...rest }) => rest) || []
           const cleanTvlData: TimeseriesDataPoint[] =
             tvlData?.map(({ chainId, address, ...rest }) => rest) || []
+          const cleanPpsData: TimeseriesDataPoint[] =
+            ppsData?.map(({ address, ...rest }) => rest) || []
 
           // Combine the cleaned data
           const combinedData: Timeseries = {
@@ -145,6 +159,7 @@ export default function YearnDashboard() {
             address: selectedVault.address,
             apy: cleanApyData,
             tvl: cleanTvlData,
+            pps: cleanPpsData,
           }
 
           setTimeseriesData(combinedData)
@@ -156,10 +171,11 @@ export default function YearnDashboard() {
       }
     }
     fetchData()
-  }, [selectedVault, fetchApy, fetchTvl, apyData, tvlData])
+  }, [selectedVault, fetchApy, fetchTvl, fetchPps, apyData, tvlData, ppsData])
 
   const [apyChartData, setApyChartData] = useState<any[]>([])
   const [tvlChartData, setTvlChartData] = useState<any[]>([])
+  const [ppsChartData, setPpsChartData] = useState<any[]>([])
 
   useEffect(() => {
     if (timeseriesData) {
@@ -181,10 +197,18 @@ export default function YearnDashboard() {
         TVL: dataPoint.value,
       }))
       setTvlChartData(transformedTvlData)
+      const transformedPpsData = timeseriesData.pps.map((dataPoint) => ({
+        date: formatUnixTimestamp(dataPoint.time),
+        PPS: dataPoint.value,
+      }))
+      setPpsChartData(transformedPpsData)
+      console.log('transformedPpsData: ', transformedPpsData)
     }
   }, [timeseriesData])
 
-  const [selectedChart, setSelectedChart] = useState<'APY' | 'TVL'>('APY') // Added state for selected chart
+  const [selectedChart, setSelectedChart] = useState<'APY' | 'TVL' | 'PPS'>(
+    'APY',
+  ) // Added state for selected chart
 
   if (loadingVaults && !selectedVault) {
     return (
@@ -345,11 +369,12 @@ export default function YearnDashboard() {
         <Tabs
           value={selectedChart}
           onValueChange={(value: string) =>
-            setSelectedChart(value as 'APY' | 'TVL')
+            setSelectedChart(value as 'APY' | 'TVL' | 'PPS')
           }
         >
           <TabsList>
             <TabsTrigger value="APY">APY Chart</TabsTrigger>
+            <TabsTrigger value="PPS">PPS Chart</TabsTrigger>
             <TabsTrigger value="TVL">TVL Chart</TabsTrigger>
           </TabsList>
         </Tabs>
@@ -421,6 +446,36 @@ export default function YearnDashboard() {
                               hideTooltip
                             />
                           </div>
+                        </CardContent>
+                      </Card>
+                    </>
+                  )}
+                  {selectedChart === 'PPS' && (
+                    <>
+                      <Card className="bg-transparent">
+                        <CardHeader>
+                          <CardTitle>
+                            PPS Performance (APY shown ghosted)
+                          </CardTitle>
+                          <CardDescription>
+                            Price per share values over {tf.label}.
+                          </CardDescription>
+                        </CardHeader>
+                        <CardContent className="h-[400px] relative">
+                          <PPSChart
+                            chartData={ppsChartData}
+                            timeframe={tf.value}
+                          />
+                          <div className="absolute inset-0 p-6 pt-0 opacity-20 h-[400px] pointer-events-none">
+                            {/* Ghosted APY chart */}
+                            <APYChart
+                              chartData={apyChartData}
+                              timeframe={tf.value}
+                              hideAxes
+                              hideTooltip
+                            />
+                          </div>
+                          {/* Render APY chart */}
                         </CardContent>
                       </Card>
                     </>
