@@ -28,7 +28,7 @@ export const APYChart: React.FC<PPSChartProps> = ({
       config={{
         pps: {
           label: 'Price Per Share',
-          color: hideAxes ? 'black' : 'var(--chart-2)',
+          color: hideAxes ? 'black' : 'var(--chart-1)',
         },
       }}
       style={{ height: 'inherit' }}
