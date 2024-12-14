@@ -1,5 +1,7 @@
 // src/components/VaultFilter.tsx
+'use client'
 import { useEffect, useState } from 'react'
+import { useParams } from 'next/navigation'
 import { Popover, PopoverTrigger, PopoverContent } from '../ui/popover'
 import { CHAIN_ID_TO_NAME, ChainId } from '@/constants/chains'
 import { Vault } from '../../types/vaultTypes'
@@ -17,6 +19,9 @@ const VaultFilter: React.FC<VaultFilterProps> = ({
   availableChains,
   setFilteredVaults,
 }) => {
+  const params = useParams()
+  const { versionFromURL, chainId: urlChainId } = params
+
   const [version, setVersion] = useState<string>('')
   const [chainId, setChainId] = useState<ChainId | null>(null)
   const [search, setSearch] = useState<string>('')
@@ -49,9 +54,7 @@ const VaultFilter: React.FC<VaultFilterProps> = ({
 
     if (newFilters.chainId) {
       const chainIdNumber = Number(newFilters.chainId) // Convert chainId to number
-      console.log('new chainId:', chainIdNumber)
       filtered = filtered.filter((vault) => vault.chainId === chainIdNumber)
-      console.log('filtered chainId: ', filtered)
     }
 
     if (newFilters.search) {
@@ -82,14 +85,45 @@ const VaultFilter: React.FC<VaultFilterProps> = ({
     isFilterActive = true
   }
 
-  // Initialize the filter on the first render. Set vault type to v3 and chain to 1.
+  // Sync filters with URL on page load
   useEffect(() => {
-    if (!filters.version && !filters.chainId && !filters.search) {
-      setVersion('v3')
-      setChainId(1 as ChainId)
-      onFilterChange({ version: 'v3', chainId: 1 as ChainId, search: '' })
+    const urlFilters = {
+      version: Array.isArray(versionFromURL)
+        ? versionFromURL[0]
+        : versionFromURL || '', // Ensure version is a string
+      chainId:
+        typeof urlChainId === 'string'
+          ? (parseInt(urlChainId, 10) as ChainId)
+          : null, // Ensure urlChainId is a string
+      search: '',
     }
-  }, [onFilterChange])
+    setVersion(urlFilters.version)
+    setChainId(urlFilters.chainId)
+    onFilterChange(urlFilters) // Ensure version is a string
+
+    const { search } = filters
+    const newFilters = {
+      version: urlFilters.version,
+      chainId: urlFilters.chainId,
+      search,
+    }
+    setFilters(newFilters)
+
+    // if (!filters.version && !filters.chainId && !filters.search) {
+    //   setVersion('v3')
+    //   setChainId(1 as ChainId)
+    //   onFilterChange({ version: 'v3', chainId: 1 as ChainId, search: '' })
+    // }
+  }, [versionFromURL, urlChainId]) // Ensure this runs when URL params change
+
+  // // Initialize the filter on the first render. Set vault type to v3 and chain to 1.
+  // useEffect(() => {
+  //   if (!filters.version && !filters.chainId && !filters.search) {
+  //     setVersion('v3')
+  //     setChainId(1 as ChainId)
+  //     onFilterChange({ version: 'v3', chainId: 1 as ChainId, search: '' })
+  //   }
+  // }, [])
 
   return (
     <>

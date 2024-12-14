@@ -1,3 +1,5 @@
+'use client'
+import { useRouter } from 'next/navigation'
 import {
   Select,
   SelectContent,
@@ -5,7 +7,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { Badge } from '@/components/ui/badge'
 import type { Vault } from '@/types/vaultTypes'
 
 interface VaultSelectorProps {
@@ -19,15 +20,19 @@ export function VaultSelector({
   selectedVault,
   setSelectedVault,
 }: VaultSelectorProps) {
+  const router = useRouter()
+
   return (
     <div className="flex items-center gap-4">
       <Select
         value={selectedVault?.address}
         onValueChange={(value) => {
-          const currentVault =
-            vaults.find((v) => v.address === value) || vaults[0]
-          setSelectedVault(currentVault)
-          console.log('selected vault: ', currentVault)
+          const currentVault = vaults.find((v) => v.address === value)
+          if (!currentVault) return
+          const vaultVersion = currentVault.v3 ? 'v3' : 'v2'
+          router.push(
+            `/${vaultVersion}/${currentVault.chainId}/${currentVault.address}`,
+          )
         }}
       >
         <SelectTrigger className="w-[300px]">

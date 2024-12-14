@@ -117,7 +117,7 @@ export const APYChart: React.FC<APYChartProps> = ({
             type="monotone"
             dataKey="APY" // Changed "value" to "apy"
             stroke="var(--color-apy)" // Changed "value" to "apy"
-            strokeWidth={1.5}
+            strokeWidth={hideAxes ? 1 : 1.5}
             strokeDasharray="5 5"
             dot={false}
           />
@@ -125,14 +125,14 @@ export const APYChart: React.FC<APYChartProps> = ({
             type="monotone"
             dataKey="SMA15"
             stroke="var(--color-sma15)"
-            strokeWidth={2}
+            strokeWidth={hideAxes ? 1 : 1.5}
             dot={false}
           />
           <Line
             type="monotone"
             dataKey="SMA30"
             stroke="var(--color-sma30)"
-            strokeWidth={2}
+            strokeWidth={hideAxes ? 1 : 1.5}
             dot={false}
           />
         </LineChart>

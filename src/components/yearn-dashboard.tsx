@@ -53,14 +53,21 @@ const calculateSMA = (
   return sma
 }
 
-export default function YearnDashboard() {
+export default function YearnDashboard({
+  version,
+  chainId,
+  address,
+}: {
+  version?: string
+  chainId?: number
+  address?: string
+}) {
   const {
     vaults,
     availableChains: availableChainNumbers,
     loading: loadingVaults,
     error: errorVaults,
   } = useVaults()
-  console.log('vaults: ', vaults)
 
   const availableChains: Record<number, string> = availableChainNumbers.reduce(
     (acc, chainId) => {
@@ -69,7 +76,6 @@ export default function YearnDashboard() {
     },
     {} as Record<number, string>,
   )
-  console.log('availableChains: ', availableChains)
 
   // const vaults = vaultsDataCropped as unknown as Vault[]
   const [selectedVault, setSelectedVault] = useState<Vault | null>(null)
@@ -98,19 +104,17 @@ export default function YearnDashboard() {
   } = useVaultTimeseries()
   console.log('timeseriesData: ', timeseriesData)
 
-  // const fetchTimeseries = async (selectedVault: Vault) => {
-  //   const timeseriesData = await import(
-  //     `@/graphql/data/${selectedVault.address}.json`
-  //   )
-  //   return timeseriesData
-  // }
-
-  // useEffect(() => {
-  //   if (!selectedVault && vaults && vaults.length > 0) {
-  //     setFilteredVaults(vaults)
-  //     setSelectedVault(vaults[0])
-  //   }
-  // }, [vaults])
+  // Whenever vault data or props change, see if there's a matching vault
+  useEffect(() => {
+    if (vaults && chainId && address) {
+      const vaultMatch = vaults.find(
+        (v) =>
+          v.chainId === chainId &&
+          v.address.toLowerCase() === address.toLowerCase(),
+      )
+      setSelectedVault(vaultMatch || null)
+    }
+  }, [vaults, chainId, address])
 
   useEffect(() => {
     const fetchData = async () => {
