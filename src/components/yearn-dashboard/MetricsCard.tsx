@@ -5,7 +5,7 @@ interface MetricsCardProps {
   title: string
   icon: ReactNode
   value: string
-  subtitle: string
+  subtitle?: string
 }
 
 export const MetricsCard: React.FC<MetricsCardProps> = ({
@@ -16,11 +16,11 @@ export const MetricsCard: React.FC<MetricsCardProps> = ({
 }) => {
   return (
     <Card>
-      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+      <CardHeader className="flex flex-row items-center justify-between space-y-0 pt-4 pb-0">
         <CardTitle className="text-sm font-medium">{title}</CardTitle>
         {icon}
       </CardHeader>
-      <CardContent>
+      <CardContent className="pb-4">
         <div className="text-2xl font-bold">{value}</div>
         <p className="text-xs text-muted-foreground">{subtitle}</p>
       </CardContent>

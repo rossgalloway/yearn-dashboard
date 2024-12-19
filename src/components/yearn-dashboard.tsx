@@ -367,7 +367,8 @@ export default function YearnDashboard({
             title="TVL"
             icon={<DollarSign className="h-4 w-4 text-muted-foreground" />}
             value={`$${selectedVault ? (selectedVault.tvl.close / 1000000).toFixed(2) : 'N/A'}M`} // added null check for selectedVault
-            subtitle={`Last updated: ${selectedVault ? formatUnixTimestamp(selectedVault.tvl.blockTime) : 'N/A'}`}
+            // subtitle={`Last updated: ${selectedVault ? formatUnixTimestamp(selectedVault.tvl.blockTime) : 'N/A'}`}
+            subtitle={''}
           />
         </div>
         <Tabs
