@@ -13,12 +13,14 @@ interface VaultSelectorProps {
   vaults: Vault[]
   selectedVault: Vault | null
   setSelectedVault: (vault: Vault) => void
+  setLoadingOverlay: (loading: boolean) => void
 }
 
 export function VaultSelector({
   vaults,
   selectedVault,
   setSelectedVault,
+  setLoadingOverlay,
 }: VaultSelectorProps) {
   const router = useRouter()
 
@@ -26,13 +28,15 @@ export function VaultSelector({
     <div className="flex items-center gap-4">
       <Select
         value={selectedVault?.address}
-        onValueChange={(value) => {
+        onValueChange={async (value) => {
           const currentVault = vaults.find((v) => v.address === value)
           if (!currentVault) return
           const vaultVersion = currentVault.v3 ? 'v3' : 'v2'
-          router.push(
-            `/${vaultVersion}/${currentVault.chainId}/${currentVault.address}`,
+          await router.push(
+            `/${vaultVersion}/${currentVault.chainId}/${currentVault.address}`, // Modified to use await
           )
+          setSelectedVault(currentVault)
+          setLoadingOverlay(true)
         }}
       >
         <SelectTrigger className="w-[300px]">

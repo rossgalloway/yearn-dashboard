@@ -102,6 +102,7 @@ export const APYChart: React.FC<PPSChartProps> = ({
             stroke="var(--color-pps)"
             strokeWidth={2}
             dot={false}
+            isAnimationActive={false}
           />
         </LineChart>
       </ResponsiveContainer>

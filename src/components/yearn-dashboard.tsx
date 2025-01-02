@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import type { Vault, TimeseriesDataPoint, Timeseries } from '@/types/vaultTypes'
 import { VaultSelector } from '@/components/yearn-dashboard/VaultSelector'
 import { MetricsCard } from '@/components/yearn-dashboard/MetricsCard'
@@ -24,8 +24,10 @@ import { Popover } from './ui/popover'
 import { CHAIN_ID_TO_NAME, ChainId } from '../constants/chains'
 import VaultFilter from './yearn-dashboard/VaultFilter'
 import { getAvailableChains } from '../utils/filterChains'
-import UpArrow from '../../static/icons/up-arrow.svg'
+import UpArrow from '../../public/icons/up-arrow.svg'
 import PPSChart from './yearn-dashboard/PPSChart'
+import YearnLoader from './yearn-dashboard/yearnLoader'
+import Image from 'next/image'
 
 const timeframes = [
   { value: '7d', label: '7 Days' },
@@ -83,6 +85,7 @@ export default function YearnDashboard({
   const [timeframe, setTimeframe] = useState('180d')
   const [loadingOverlay, setLoadingOverlay] = useState(false)
   const [selectVaultOverlay, setSelectVaultOverlay] = useState(false)
+  const [firstLoad, setFirstLoad] = useState(true)
   const [timeseriesData, setTimeseriesData] = useState<Timeseries>({
     address: '',
     chainId: 0,
@@ -102,11 +105,10 @@ export default function YearnDashboard({
     loading: loadingTimeseries,
     error: errorTimeseries,
   } = useVaultTimeseries()
-  console.log('timeseriesData: ', timeseriesData)
 
   // Whenever vault data or props change, see if there's a matching vault
   useEffect(() => {
-    if (vaults && chainId && address) {
+    if (!selectedVault && vaults && chainId && address) {
       const vaultMatch = vaults.find(
         (v) =>
           v.chainId === chainId &&
@@ -114,68 +116,72 @@ export default function YearnDashboard({
       )
       setSelectedVault(vaultMatch || null)
     }
-  }, [vaults, chainId, address])
+  }, [vaults])
 
-  useEffect(() => {
-    const fetchData = async () => {
-      if (selectedVault) {
-        setLoadingOverlay(true) // Show loading overlay
+  const fetchData = useCallback(async () => {
+    // Memoize fetchData
+    if (selectedVault) {
+      setLoadingOverlay(true) // Show loading overlay
 
-        try {
-          await Promise.all([
-            fetchApy({
-              variables: {
-                chainId: selectedVault.chainId,
-                address: selectedVault.address,
-                label: 'apy-bwd-delta-pps',
-                component: 'weeklyNet',
-                limit: 1000,
-              },
-            }),
-            fetchTvl({
-              variables: {
-                chainId: selectedVault.chainId,
-                address: selectedVault.address,
-                label: 'tvl',
-                limit: 1000,
-              },
-            }),
-            fetchPps({
-              variables: {
-                address: selectedVault.address,
-                label: 'pps',
-                component: 'humanized',
-              },
-            }),
-          ])
+      try {
+        await Promise.all([
+          fetchApy({
+            variables: {
+              chainId: selectedVault.chainId,
+              address: selectedVault.address,
+              label: 'apy-bwd-delta-pps',
+              component: 'weeklyNet',
+              limit: 1000,
+            },
+          }),
+          fetchTvl({
+            variables: {
+              chainId: selectedVault.chainId,
+              address: selectedVault.address,
+              label: 'tvl',
+              limit: 1000,
+            },
+          }),
+          fetchPps({
+            variables: {
+              address: selectedVault.address,
+              label: 'pps',
+              component: 'humanized',
+            },
+          }),
+        ])
 
-          // Clean the fetched data by removing chainId and address
-          const cleanApyData: TimeseriesDataPoint[] =
-            apyData?.map(({ chainId, address, ...rest }) => rest) || []
-          const cleanTvlData: TimeseriesDataPoint[] =
-            tvlData?.map(({ chainId, address, ...rest }) => rest) || []
-          const cleanPpsData: TimeseriesDataPoint[] =
-            ppsData?.map(({ address, ...rest }) => rest) || []
+        // Clean the fetched data by removing chainId and address
+        const cleanApyData: TimeseriesDataPoint[] =
+          apyData?.map(({ chainId, address, ...rest }) => rest) || []
+        const cleanTvlData: TimeseriesDataPoint[] =
+          tvlData?.map(({ chainId, address, ...rest }) => rest) || []
+        const cleanPpsData: TimeseriesDataPoint[] =
+          ppsData?.map(({ address, ...rest }) => rest) || []
 
-          // Combine the cleaned data
-          const combinedData: Timeseries = {
-            chainId: selectedVault.chainId,
-            address: selectedVault.address,
-            apy: cleanApyData,
-            tvl: cleanTvlData,
-            pps: cleanPpsData,
-          }
-
-          setTimeseriesData(combinedData)
-        } catch (error) {
-          console.error('Error fetching data:', error)
-        } finally {
-          setLoadingOverlay(false) // Hide loading overlay
+        // Combine the cleaned data
+        const combinedData: Timeseries = {
+          chainId: selectedVault.chainId,
+          address: selectedVault.address,
+          apy: cleanApyData,
+          tvl: cleanTvlData,
+          pps: cleanPpsData,
         }
+
+        setTimeseriesData(combinedData)
+      } catch (error) {
+        console.error('Error fetching data:', error)
+      } finally {
+        setLoadingOverlay(false) // Hide loading overlay
+        setFirstLoad(false)
       }
     }
+  }, [selectedVault, fetchApy, fetchTvl, fetchPps, apyData, tvlData, ppsData]) // Dependencies
+
+  useEffect(() => {
+    if (!firstLoad) return
     fetchData()
-  }, [selectedVault, fetchApy, fetchTvl, fetchPps, apyData, tvlData, ppsData])
+  }, [fetchData]) // Only re-run if fetchData changes
 
   const [apyChartData, setApyChartData] = useState<any[]>([])
   const [tvlChartData, setTvlChartData] = useState<any[]>([])
@@ -206,7 +212,6 @@ export default function YearnDashboard({
         PPS: dataPoint.value,
       }))
       setPpsChartData(transformedPpsData)
-      console.log('transformedPpsData: ', transformedPpsData)
     }
   }, [timeseriesData])
 
@@ -217,7 +222,7 @@ export default function YearnDashboard({
   if (loadingVaults && !selectedVault) {
     return (
       <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-75">
-        <div className="loader">Loading...</div>
+        <YearnLoader />
       </div>
     )
   }
@@ -271,16 +276,18 @@ export default function YearnDashboard({
       {/* Set max width to 800px and center */}
       <div className="flex flex-col gap-2">
         <div className="flex flex-row gap-2 items-center">
-          <img
-            src="/static/icons/logo.svg"
+          <Image
+            src="/icons/logo.svg" // updated path
             alt="Yearn Logo"
-            className="w-6 h-6"
+            width={24} // equivalent to w-6
+            height={24} // equivalent to h-6
           />
           <h2 className="text-xl font-bold pr-4">Vault Analytics</h2>
           <VaultSelector
             vaults={filteredVaults}
             selectedVault={selectedVault}
             setSelectedVault={setSelectedVault}
+            setLoadingOverlay={setLoadingOverlay}
           />
           <VaultFilter
             vaults={vaults || []} // provide default empty array
@@ -320,8 +327,8 @@ export default function YearnDashboard({
       <div className="relative flex flex-col gap-4">
         {!selectedVault && <SelectVaultOverlay />}
         {loadingOverlay && (
-          <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-75">
-            <div className="loader">Loading...</div>
+          <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-85 z-10">
+            <YearnLoader />
           </div>
         )}
         <div className="grid gap-4 md:grid-cols-4">

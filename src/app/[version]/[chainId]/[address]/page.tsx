@@ -9,7 +9,7 @@ export default function VaultPage() {
     version: string
     chainId: string
     address: string
-  } // ensure params are strings
+  }
 
   return (
     <YearnDashboard

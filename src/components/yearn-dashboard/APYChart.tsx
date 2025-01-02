@@ -7,7 +7,6 @@ import {
   CartesianGrid,
 } from 'recharts'
 import { ChartContainer, ChartTooltip } from '@/components/ui/chart'
-import { formatUnixTimestamp } from '@/lib/utils'
 
 interface APYChartProps {
   chartData: any[]
@@ -120,6 +119,7 @@ export const APYChart: React.FC<APYChartProps> = ({
             strokeWidth={hideAxes ? 1 : 1.5}
             strokeDasharray="5 5"
             dot={false}
+            isAnimationActive={false}
           />
           <Line
             type="monotone"
@@ -127,6 +127,7 @@ export const APYChart: React.FC<APYChartProps> = ({
             stroke="var(--color-sma15)"
             strokeWidth={hideAxes ? 1 : 1.5}
             dot={false}
+            isAnimationActive={false}
           />
           <Line
             type="monotone"
@@ -134,6 +135,7 @@ export const APYChart: React.FC<APYChartProps> = ({
             stroke="var(--color-sma30)"
             strokeWidth={hideAxes ? 1 : 1.5}
             dot={false}
+            isAnimationActive={false}
           />
         </LineChart>
       </ResponsiveContainer>

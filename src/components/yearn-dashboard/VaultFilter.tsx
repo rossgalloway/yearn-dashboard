@@ -6,7 +6,7 @@ import { Popover, PopoverTrigger, PopoverContent } from '../ui/popover'
 import { CHAIN_ID_TO_NAME, ChainId } from '@/constants/chains'
 import { Vault } from '../../types/vaultTypes'
 import { Badge } from '../ui/badge'
-import FiltersIcon from '../../../static/icons/filtersIcon.svg'
+import FiltersIcon from '../../../public/icons/filtersIcon.svg'
 
 interface VaultFilterProps {
   vaults: Vault[]

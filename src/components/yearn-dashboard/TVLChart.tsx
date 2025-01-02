@@ -99,6 +99,7 @@ export const TVLChart: React.FC<TVLChartProps> = ({
             fill={hideAxes ? 'transparent' : 'var(--color-value)'}
             stroke={hideAxes ? 'var(--color-value)' : 'transparent'}
             radius={[4, 4, 0, 0]}
+            isAnimationActive={false}
           />
         </ComposedChart>
       </ResponsiveContainer>
