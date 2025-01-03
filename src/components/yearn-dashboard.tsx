@@ -28,6 +28,7 @@ import UpArrow from '../../public/icons/up-arrow.svg'
 import PPSChart from './yearn-dashboard/PPSChart'
 import YearnLoader from './yearn-dashboard/yearnLoader'
 import Image from 'next/image'
+import { set } from 'date-fns'
 
 const timeframes = [
   { value: '7d', label: '7 Days' },
@@ -71,6 +72,12 @@ export default function YearnDashboard({
     error: errorVaults,
   } = useVaults()
 
+  useEffect(() => {
+    if (vaults) {
+      console.log('retrieved vaults: ', vaults)
+    }
+  }, [vaults])
+
   const availableChains: Record<number, string> = availableChainNumbers.reduce(
     (acc, chainId) => {
       acc[chainId] = CHAIN_ID_TO_NAME[chainId] || 'Unknown' // map numbers to ChainId enum and maintain both id and name
@@ -81,7 +88,6 @@ export default function YearnDashboard({
 
   // const vaults = vaultsDataCropped as unknown as Vault[]
   const [selectedVault, setSelectedVault] = useState<Vault | null>(null)
-  const [filteredVaults, setFilteredVaults] = useState<Vault[]>(vaults || [])
   const [timeframe, setTimeframe] = useState('180d')
   const [loadingOverlay, setLoadingOverlay] = useState(false)
   const [selectVaultOverlay, setSelectVaultOverlay] = useState(false)
@@ -249,21 +255,11 @@ export default function YearnDashboard({
         </div>
         <div
           className="absolute flex flex-col items-center justify-center"
-          style={{ top: '-25px', left: '470px' }}
+          style={{ top: '-25px', left: '480px' }}
         >
           <UpArrow className="w-6 h-6 font-bold text-[var(--chart-1)]" />
           <div className="flex flex-col items-center text-md text-[var(--chart-1)] font-bold">
-            <span>Filter and</span>
-            <span>Search Vaults</span>
-          </div>
-        </div>
-        <div
-          className="absolute flex flex-col items-center justify-center"
-          style={{ top: '-25px', left: '600px' }}
-        >
-          <UpArrow className="w-6 h-6 font-bold text-[var(--chart-1)]" />
-          <div className="text-md text-[var(--chart-1)] font-bold">
-            Active Filters
+            Filter Vaults
           </div>
         </div>
       </div>
@@ -284,15 +280,11 @@ export default function YearnDashboard({
           />
           <h2 className="text-xl font-bold pr-4">Vault Analytics</h2>
           <VaultSelector
-            vaults={filteredVaults}
+            vaults={vaults || []}
             selectedVault={selectedVault}
+            availableChains={availableChains}
             setSelectedVault={setSelectedVault}
             setLoadingOverlay={setLoadingOverlay}
-          />
-          <VaultFilter
-            vaults={vaults || []} // provide default empty array
-            availableChains={availableChains}
-            setFilteredVaults={setFilteredVaults}
           />
         </div>
         {selectedVault && (

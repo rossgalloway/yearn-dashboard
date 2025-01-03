@@ -7,39 +7,34 @@ import { CHAIN_ID_TO_NAME, ChainId } from '@/constants/chains'
 import { Vault } from '../../types/vaultTypes'
 import { Badge } from '../ui/badge'
 import FiltersIcon from '../../../public/icons/filtersIcon.svg'
+import React from 'react'
 
 interface VaultFilterProps {
   vaults: Vault[]
   availableChains: Record<number, string>
+  filters: {
+    version: string
+    chainId: ChainId | null
+  }
+  setFilters: (filters: { version: string; chainId: ChainId | null }) => void
   setFilteredVaults: (vaults: Vault[]) => void
 }
 
 const VaultFilter: React.FC<VaultFilterProps> = ({
   vaults,
   availableChains,
+  filters,
+  setFilters,
   setFilteredVaults,
 }) => {
   const params = useParams()
   const { versionFromURL, chainId: urlChainId } = params
 
-  const [version, setVersion] = useState<string>('')
-  const [chainId, setChainId] = useState<ChainId | null>(null)
-  const [search, setSearch] = useState<string>('')
   const [open, setOpen] = useState(false)
-  const [filters, setFilters] = useState<{
-    version: string
-    chainId: ChainId | null
-    search: string
-  }>({
-    version: '',
-    chainId: null,
-    search: '',
-  })
 
   const onFilterChange = (newFilters: {
     version: string
     chainId: ChainId | null
-    search: string
   }) => {
     setFilters(newFilters)
     let filtered = vaults
@@ -56,33 +51,34 @@ const VaultFilter: React.FC<VaultFilterProps> = ({
       const chainIdNumber = Number(newFilters.chainId) // Convert chainId to number
       filtered = filtered.filter((vault) => vault.chainId === chainIdNumber)
     }
-
-    if (newFilters.search) {
-      filtered = filtered.filter(
-        (vault) =>
-          vault.address.includes(newFilters.search) ||
-          vault.name.toLowerCase().includes(newFilters.search.toLowerCase()),
-      )
-    }
-
+    console.log('setting filtered Vaults: ', filtered)
     setFilteredVaults(filtered)
   }
 
   const handleApplyFilters = () => {
-    onFilterChange({ version, chainId, search })
+    console.log('applying filters')
+    // onFilterChange({ version: filters.version, chainId: filters.chainId })
     setOpen(false) // Close popover
   }
 
   const handleClearFilters = () => {
-    setVersion('')
-    setChainId(null)
-    setSearch('')
-    onFilterChange({ version: '', chainId: null, search: '' })
+    setFilters({ version: '', chainId: null })
+    // onFilterChange({ version: '', chainId: null })
   }
 
   let isFilterActive: boolean = false
-  if (filters.version || filters.chainId || filters.search) {
+  if (filters.version || filters.chainId) {
     isFilterActive = true
+  }
+
+  const handleVersionChange = (version: string) => {
+    console.log('handleVersionChange: ', { ...filters, version })
+    setFilters({ ...filters, version })
+  }
+
+  const handleChainIdChange = (chainId: ChainId | null) => {
+    console.log('handleChainIdChange: ', { ...filters, chainId })
+    setFilters({ ...filters, chainId })
   }
 
   // Sync filters with URL on page load
@@ -90,40 +86,24 @@ const VaultFilter: React.FC<VaultFilterProps> = ({
     const urlFilters = {
       version: Array.isArray(versionFromURL)
         ? versionFromURL[0]
-        : versionFromURL || '', // Ensure version is a string
+        : versionFromURL || '',
       chainId:
         typeof urlChainId === 'string'
           ? (parseInt(urlChainId, 10) as ChainId)
-          : null, // Ensure urlChainId is a string
-      search: '',
+          : null,
     }
-    setVersion(urlFilters.version)
-    setChainId(urlFilters.chainId)
-    onFilterChange(urlFilters) // Ensure version is a string
+    setFilters(urlFilters)
 
-    const { search } = filters
     const newFilters = {
       version: urlFilters.version,
       chainId: urlFilters.chainId,
-      search,
     }
     setFilters(newFilters)
+  }, [versionFromURL, urlChainId])
 
-    // if (!filters.version && !filters.chainId && !filters.search) {
-    //   setVersion('v3')
-    //   setChainId(1 as ChainId)
-    //   onFilterChange({ version: 'v3', chainId: 1 as ChainId, search: '' })
-    // }
-  }, [versionFromURL, urlChainId]) // Ensure this runs when URL params change
-
-  // // Initialize the filter on the first render. Set vault type to v3 and chain to 1.
-  // useEffect(() => {
-  //   if (!filters.version && !filters.chainId && !filters.search) {
-  //     setVersion('v3')
-  //     setChainId(1 as ChainId)
-  //     onFilterChange({ version: 'v3', chainId: 1 as ChainId, search: '' })
-  //   }
-  // }, [])
+  useEffect(() => {
+    onFilterChange(filters)
+  }, [filters]) // Modified dependency array to be an array containing filters
 
   return (
     <>
@@ -131,7 +111,7 @@ const VaultFilter: React.FC<VaultFilterProps> = ({
         <PopoverTrigger className="button">
           <div>
             <FiltersIcon
-              className={`w-6 h-6 ${isFilterActive ? 'text-[#0657f9]' : 'text-black'}`}
+              className={`w-6 h-6 ml-2 ${isFilterActive ? 'text-[#0657f9]' : 'text-black'}`}
             />
           </div>
         </PopoverTrigger>
@@ -147,8 +127,8 @@ const VaultFilter: React.FC<VaultFilterProps> = ({
               Vault Version
             </label>
             <select
-              value={version}
-              onChange={(e) => setVersion(e.target.value)}
+              value={filters.version}
+              onChange={(e) => handleVersionChange(e.target.value)}
               className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
             >
               <option value="">All</option>
@@ -161,8 +141,11 @@ const VaultFilter: React.FC<VaultFilterProps> = ({
               Chain
             </label>
             <select
-              value={chainId ?? ''}
-              onChange={(e) => setChainId(Number(e.target.value) as ChainId)} // Convert value to number
+              value={filters.chainId ?? ''}
+              onChange={(e) => {
+                const value = e.target.value
+                handleChainIdChange(Number(value) as ChainId)
+              }}
               className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
             >
               <option value="">All</option>
@@ -172,17 +155,6 @@ const VaultFilter: React.FC<VaultFilterProps> = ({
                 </option>
               ))}
             </select>
-          </div>
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700">
-              Search
-            </label>
-            <input
-              type="text"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
-            />
           </div>
           <div className="flex justify-between">
             <button
@@ -200,19 +172,6 @@ const VaultFilter: React.FC<VaultFilterProps> = ({
           </div>
         </PopoverContent>
       </Popover>
-      <div className="flex flex-wrap gap-2">
-        {filters.version && (
-          <Badge variant="secondary">Version: {filters.version}</Badge>
-        )}
-        {filters.chainId && (
-          <Badge variant="secondary">
-            Chain: {CHAIN_ID_TO_NAME[filters.chainId]}
-          </Badge>
-        )}
-        {filters.search && (
-          <Badge variant="secondary">Search: {filters.search}</Badge>
-        )}
-      </div>
     </>
   )
 }

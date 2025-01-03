@@ -11,23 +11,23 @@ interface VaultsQueryResult {
 
 interface UseVaultsReturn {
   vaults: Vault[] | undefined
+
   availableChains: number[]
   loading: boolean
   error: any
 }
 
 export function useVaults(): UseVaultsReturn {
+  console.log('fetching vaults data with useVaults hook')
   const { data, loading, error } = useQuery<VaultsQueryResult>(GET_VAULTS)
 
   // Filter vaults if data exists
-  const filteredVaults = data?.vaults
-    ? filterYearnVaults(data.vaults)
-    : undefined
+  const yearnVaults = data?.vaults ? filterYearnVaults(data.vaults) : undefined
 
-  const availableChains = getAvailableChains(filteredVaults || [])
+  const availableChains = getAvailableChains(yearnVaults || [])
 
   return {
-    vaults: filteredVaults,
+    vaults: yearnVaults,
     availableChains,
     loading,
     error,
