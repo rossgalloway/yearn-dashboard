@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import type { Vault, TimeseriesDataPoint, Timeseries } from '@/types/vaultTypes'
-import { VaultSelector } from '@/components/yearn-dashboard/VaultSelector'
+import { VaultSelectorFilter } from '@/components/yearn-dashboard/VaultSelectorFilter'
 import { MetricsCard } from '@/components/yearn-dashboard/MetricsCard'
 import { APYChart } from '@/components/yearn-dashboard/APYChart'
 import { TimeframeTabs } from '@/components/yearn-dashboard/TimeframeTabs'
@@ -20,15 +20,11 @@ import {
   CardTitle,
 } from './ui/card'
 import { Badge } from './ui/badge'
-import { Popover } from './ui/popover'
 import { CHAIN_ID_TO_NAME, ChainId } from '../constants/chains'
-import VaultFilter from './yearn-dashboard/VaultFilter'
-import { getAvailableChains } from '../utils/filterChains'
 import UpArrow from '../../public/icons/up-arrow.svg'
 import PPSChart from './yearn-dashboard/PPSChart'
 import YearnLoader from './yearn-dashboard/yearnLoader'
 import Image from 'next/image'
-import { set } from 'date-fns'
 
 const timeframes = [
   { value: '7d', label: '7 Days' },
@@ -72,11 +68,11 @@ export default function YearnDashboard({
     error: errorVaults,
   } = useVaults()
 
-  useEffect(() => {
-    if (vaults) {
-      console.log('retrieved vaults: ', vaults)
-    }
-  }, [vaults])
+  // useEffect(() => {
+  //   if (vaults) {
+  //     console.log('retrieved vaults: ', vaults)
+  //   }
+  // }, [vaults])
 
   const availableChains: Record<number, string> = availableChainNumbers.reduce(
     (acc, chainId) => {
@@ -255,7 +251,7 @@ export default function YearnDashboard({
         </div>
         <div
           className="absolute flex flex-col items-center justify-center"
-          style={{ top: '-25px', left: '480px' }}
+          style={{ top: '-25px', left: '500px' }}
         >
           <UpArrow className="w-6 h-6 font-bold text-[var(--chart-1)]" />
           <div className="flex flex-col items-center text-md text-[var(--chart-1)] font-bold">
@@ -279,7 +275,7 @@ export default function YearnDashboard({
             height={24} // equivalent to h-6
           />
           <h2 className="text-xl font-bold pr-4">Vault Analytics</h2>
-          <VaultSelector
+          <VaultSelectorFilter
             vaults={vaults || []}
             selectedVault={selectedVault}
             availableChains={availableChains}

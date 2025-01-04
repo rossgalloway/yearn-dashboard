@@ -18,6 +18,10 @@ interface VaultFilterProps {
   }
   setFilters: (filters: { version: string; chainId: ChainId | null }) => void
   setFilteredVaults: (vaults: Vault[]) => void
+  filtersRef: React.MutableRefObject<{
+    version: string
+    chainId: ChainId | null
+  }>
 }
 
 const VaultFilter: React.FC<VaultFilterProps> = ({
@@ -26,6 +30,7 @@ const VaultFilter: React.FC<VaultFilterProps> = ({
   filters,
   setFilters,
   setFilteredVaults,
+  filtersRef,
 }) => {
   const params = useParams()
   const { versionFromURL, chainId: urlChainId } = params
@@ -36,6 +41,7 @@ const VaultFilter: React.FC<VaultFilterProps> = ({
     version: string
     chainId: ChainId | null
   }) => {
+    filtersRef.current = newFilters
     setFilters(newFilters)
     let filtered = vaults
 
@@ -62,6 +68,7 @@ const VaultFilter: React.FC<VaultFilterProps> = ({
   }
 
   const handleClearFilters = () => {
+    console.log('clearning filters')
     setFilters({ version: '', chainId: null })
     // onFilterChange({ version: '', chainId: null })
   }

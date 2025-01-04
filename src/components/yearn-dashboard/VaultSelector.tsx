@@ -33,14 +33,15 @@ export function VaultSelector({
 
   const [search, setSearch] = useState('')
   const [filteredVaults, setFilteredVaults] = useState<Vault[]>(vaults || [])
-  const inputRef = useRef<HTMLInputElement>(null)
-  const [filters, setFilters] = useState<{
+  const filtersRef = useRef<{
     version: string
     chainId: ChainId | null
   }>({
     version: '',
     chainId: null,
   })
+  console.log('filtersRef.current: ', filtersRef.current)
+  const [filters, setFilters] = useState(filtersRef.current)
 
   // Added useMemo for filtered vaults
   const filteredVaultsMemo = useMemo(() => {
@@ -64,17 +65,17 @@ export function VaultSelector({
     return filtered
   }, [search, selectedVault, filteredVaults, filters])
 
-  useEffect(() => {
-    if (inputRef.current) {
-      inputRef.current.focus()
-    }
-  }, [])
+  // useEffect(() => {
+  //   if (inputRef.current) {
+  //     inputRef.current.focus()
+  //   }
+  // }, [])
 
-  const handleOpenChange = useCallback((open: boolean) => {
-    if (open && inputRef.current) {
-      setTimeout(() => inputRef.current?.focus(), 0)
-    }
-  }, [])
+  // const handleOpenChange = useCallback((open: boolean) => {
+  //   if (open && inputRef.current) {
+  //     setTimeout(() => inputRef.current?.focus(), 0)
+  //   }
+  // }, [])
 
   const handleSelectChange = useCallback(
     (value: string) => {
@@ -119,7 +120,7 @@ export function VaultSelector({
         value={selectedVault?.address || ''}
         onValueChange={handleSelectChange}
         onOpenChange={(open) => {
-          handleOpenChange(open)
+          // handleOpenChange(open)
           if (!open) handleCloseChange()
         }}
       >
@@ -153,7 +154,7 @@ export function VaultSelector({
               )}
             </div>
             <Input
-              ref={inputRef}
+              // ref={inputRef}
               placeholder="Search vaults..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
@@ -179,6 +180,7 @@ export function VaultSelector({
         filters={filters}
         setFilters={setFilters}
         setFilteredVaults={setFilteredVaults}
+        filtersRef={filtersRef}
       />
     </div>
   )

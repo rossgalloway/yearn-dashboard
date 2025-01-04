@@ -18,7 +18,7 @@ interface UseVaultsReturn {
 }
 
 export function useVaults(): UseVaultsReturn {
-  console.log('fetching vaults data with useVaults hook')
+  // console.log('fetching vaults data with useVaults hook')
   const { data, loading, error } = useQuery<VaultsQueryResult>(GET_VAULTS)
 
   // Filter vaults if data exists

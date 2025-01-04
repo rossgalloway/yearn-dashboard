@@ -17,7 +17,7 @@ export type TimeseriesParams = {
 }
 
 export function useVaultTimeseries() {
-  console.log('fetching vault timeseries data with useVaultTimeseries hook')
+  // console.log('fetching vault timeseries data with useVaultTimeseries hook')
   // Fetch APY data
   const [fetchApy, { data: apyData, loading: apyLoading, error: apyError }] =
     useLazyQuery<{ timeseries: TimeseriesDataPoint[] }, TimeseriesParams>(
