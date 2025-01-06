@@ -1,5 +1,4 @@
-//TODO: clear out console.logs
-//TODO: add filters back to select dropdown above search bar.
+//TODO: move selected vault to the top of the list
 //TODO: add vault info (chain and version) to the info about the vault
 //TODO: add vault type to filters (single asset, curve, etc.)
 
@@ -60,7 +59,6 @@ export const VaultSelectorFilter: React.FC<VaultManagerProps> = ({
   const handleSearch = (searchTerm: string) => {
     setSearch(searchTerm)
   }
-
   const filteredVaultsMemo = useMemo(() => {
     let filtered = filteredVaults.filter(
       (vault) =>
@@ -72,14 +70,15 @@ export const VaultSelectorFilter: React.FC<VaultManagerProps> = ({
       const selectedVaultItem = vaults.find(
         (vault) => vault.address === selectedVault.address,
       )
-      if (
-        selectedVaultItem &&
-        !filtered.some((vault) => vault.address === selectedVault.address)
-      ) {
-        return [selectedVaultItem, ...filtered]
+      if (selectedVaultItem) {
+        // Remove the selected vault from the filtered list if it exists
+        filtered = filtered.filter(
+          (vault) => vault.address !== selectedVault.address,
+        )
+        // Add the selected vault to the top of the list
+        filtered.unshift(selectedVaultItem)
       }
     }
-    console.log('filteredVaultsMemo: ', filtered)
     return filtered
   }, [search, selectedVault, filteredVaults, filters])
 
@@ -89,6 +88,7 @@ export const VaultSelectorFilter: React.FC<VaultManagerProps> = ({
       if (selectedVault) {
         setLoadingOverlay(true)
         setSelectedVault(selectedVault)
+        console.log('selectedVault: ', selectedVault)
         router.push(
           `/${selectedVault.v3 ? 'v3' : 'v2'}/${selectedVault.chainId}/${selectedVault.address}`,
         )
@@ -102,6 +102,20 @@ export const VaultSelectorFilter: React.FC<VaultManagerProps> = ({
     setFilters({ version: '', chainId: null })
   }
 
+  const handleVersionBadgeClick = () => {
+    setFilters((prevFilters: typeof filters) => ({
+      ...prevFilters,
+      version: '',
+    }))
+  }
+
+  const handleChainBadgeClick = () => {
+    setFilters((prevFilters: typeof filters) => ({
+      ...prevFilters,
+      chainId: null,
+    }))
+  }
+
   // Save filters to session storage
   useEffect(() => {
     sessionStorage.setItem('vaultFilters', JSON.stringify(filters))
@@ -110,10 +124,7 @@ export const VaultSelectorFilter: React.FC<VaultManagerProps> = ({
   // update filtered vaults when filters change
   useEffect(() => {
     let filtered = vaults
-    console.log('filters: ', filters)
     if (filters.version) {
-      console.log('filters.version: ', filters.version)
-      console.log('vaults: ', vaults)
       filtered = vaults.filter((vault) => {
         // Ensure the filter function returns a boolean value
         return filters.version === 'v2'
@@ -122,11 +133,9 @@ export const VaultSelectorFilter: React.FC<VaultManagerProps> = ({
       })
     }
     if (filters.chainId) {
-      console.log('filters.chainId: ', filters.chainId)
       const chainIdNumber = Number(filters.chainId)
       filtered = filtered.filter((vault) => vault.chainId === chainIdNumber) // Filter on the already filtered array
     }
-    console.log('setting filtered Vaults: ', filtered)
     setFilteredVaults(filtered)
   }, [filters, vaults]) // Added vaults as a dependency
 
@@ -142,6 +151,30 @@ export const VaultSelectorFilter: React.FC<VaultManagerProps> = ({
           </SelectTrigger>
           <SelectContent>
             <div className="p-2">
+              <div className="flex flex-wrap gap-2 pl-2 pb-2">
+                <span className="text-sm text-gray-500">Active Filters: </span>
+                {!filters.version && !filters.chainId && (
+                  <span className="text-sm text-gray-500">None</span>
+                )}
+                {filters.version && (
+                  <Badge
+                    variant="secondary"
+                    onClick={handleVersionBadgeClick}
+                    className="cursor-pointer"
+                  >
+                    Version: {filters.version}
+                  </Badge>
+                )}
+                {filters.chainId && (
+                  <Badge
+                    variant="secondary"
+                    onClick={handleChainBadgeClick}
+                    className="cursor-pointer"
+                  >
+                    Chain: {CHAIN_ID_TO_NAME[filters.chainId]}
+                  </Badge>
+                )}
+              </div>
               <Input
                 placeholder="Search vaults..."
                 value={search}

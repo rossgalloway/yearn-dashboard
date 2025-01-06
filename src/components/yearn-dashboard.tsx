@@ -289,27 +289,45 @@ export default function YearnDashboard({
         {selectedVault && (
           <>
             <div className="flex flex-row gap-4 items-end text-sm">
-              <h1 className="text-3xl font-bold pl-2 pt-4">
-                {selectedVault.name}
-              </h1>
-              <Badge variant="outline">{selectedVault.address}</Badge>
-              <div className="flex gap-2">
-                <a
-                  href={`https://yearn.finance/#/vaults/${selectedVault.address}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-600 hover:text-blue-800"
-                >
-                  Yearn ↗
-                </a>
-                <a
-                  href={`https://etherscan.io/address/${selectedVault.address}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-600 hover:text-blue-800"
-                >
-                  Etherscan ↗
-                </a>
+              <div className="flex flex-col gap-2">
+                <div className="flex flex-row gap-2">
+                  <h1 className="text-3xl font-bold pl-2 pt-4">
+                    {selectedVault.name}
+                  </h1>
+                  <Badge variant="outline" className="self-end">
+                    {selectedVault.address}
+                  </Badge>
+                </div>
+                <div className="flex flex-row gap-2">
+                  <Badge variant="outline">
+                    {CHAIN_ID_TO_NAME[selectedVault.chainId]}
+                  </Badge>
+                  <Badge variant="outline">
+                    {selectedVault.v3 ? 'V3' : 'V2'}
+                    {' - '}
+                    {selectedVault.apiVersion}
+                  </Badge>
+                  <a
+                    href={
+                      selectedVault.v3
+                        ? `https://yearn.fi/v3/${selectedVault.chainId}/${selectedVault.address}`
+                        : `https://yearn.fi/vaults/${selectedVault.chainId}/${selectedVault.address}`
+                    }
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:text-blue-800"
+                  >
+                    Yearn ↗
+                  </a>
+                  <a
+                    href={`https://etherscan.io/address/${selectedVault.address}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:text-blue-800"
+                  >
+                    Etherscan ↗
+                  </a>
+                </div>
               </div>
             </div>
           </>
