@@ -8,14 +8,14 @@ import {
 } from 'recharts'
 import { ChartContainer, ChartTooltip } from '@/components/ui/chart'
 
-interface APYChartProps {
+interface PPSChartProps {
   chartData: any[]
   timeframe: string
   hideAxes?: boolean // Added prop for hiding axes
   hideTooltip?: boolean // Added prop for hiding tooltip
 }
 
-export const APYChart: React.FC<APYChartProps> = ({
+export const APYChart: React.FC<PPSChartProps> = ({
   chartData,
   timeframe,
   hideAxes,
@@ -26,14 +26,9 @@ export const APYChart: React.FC<APYChartProps> = ({
   return (
     <ChartContainer
       config={{
-        apy: { label: 'APY %', color: hideAxes ? 'black' : 'var(--chart-2)' }, // Changed "value" to "apy"
-        sma15: {
-          label: '15-day SMA',
+        pps: {
+          label: 'Price Per Share',
           color: hideAxes ? 'black' : 'var(--chart-1)',
-        },
-        sma30: {
-          label: '30-day SMA',
-          color: hideAxes ? 'black' : 'var(--chart-3)',
         },
       }}
       style={{ height: 'inherit' }}
@@ -67,13 +62,13 @@ export const APYChart: React.FC<APYChartProps> = ({
             }
           />
           <YAxis
-            domain={[0, 'auto']}
-            tickFormatter={(value) => `${value}%`}
+            domain={['auto', 'auto']}
+            tickFormatter={(value) => value.toFixed(3)} // Round to 3 decimals and remove %
             label={
               hideAxes
                 ? undefined
                 : {
-                    value: 'APY %',
+                    value: 'Price Per Share',
                     angle: -90,
                     position: 'insideLeft', // Changed from 'center' to 'insideLeft'
                     offset: 10, // Negative offset moves label closer to axis
@@ -99,41 +94,13 @@ export const APYChart: React.FC<APYChartProps> = ({
               hideAxes ? false : { stroke: 'hsl(var(--muted-foreground))' }
             } // Hide tick lines
           />
-          {!hideTooltip && (
-            <ChartTooltip
-              formatter={(value: number, name: string) => {
-                const label =
-                  name === 'APY'
-                    ? 'APY'
-                    : name === 'SMA15'
-                      ? '15-day SMA'
-                      : '30-day SMA'
-                return [`${value.toFixed(2)}%`, label]
-              }}
-            />
-          )}
+          {!hideTooltip && <ChartTooltip />}
+
           <Line
             type="monotone"
-            dataKey="APY" // Changed "value" to "apy"
-            stroke="var(--color-apy)" // Changed "value" to "apy"
-            strokeWidth={hideAxes ? 1 : 1.5}
-            strokeDasharray="5 5"
-            dot={false}
-            isAnimationActive={false}
-          />
-          <Line
-            type="monotone"
-            dataKey="SMA15"
-            stroke="var(--color-sma15)"
-            strokeWidth={hideAxes ? 1 : 1.5}
-            dot={false}
-            isAnimationActive={false}
-          />
-          <Line
-            type="monotone"
-            dataKey="SMA30"
-            stroke="var(--color-sma30)"
-            strokeWidth={hideAxes ? 1 : 1.5}
+            dataKey="PPS"
+            stroke="var(--color-pps)"
+            strokeWidth={2}
             dot={false}
             isAnimationActive={false}
           />

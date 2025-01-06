@@ -4,18 +4,20 @@ import {
   GET_VAULT_TIMESERIES,
   queryAPY,
   queryTVL,
+  queryPPS,
 } from '@/graphql/queries/timeseries'
 import type { Timeseries, TimeseriesDataPoint, Vault } from '@/types/vaultTypes'
 
 export type TimeseriesParams = {
-  chainId: number
+  chainId?: number
   address: string
-  label: 'apy-bwd-delta-pps' | 'tvl' // Add more labels as needed
-  component?: 'weeklyNet' | 'close' // Add more components as needed
+  label: 'apy-bwd-delta-pps' | 'tvl' | 'pps' // Add more labels as needed
+  component?: 'weeklyNet' | 'close' | 'humanized' // Add more components as needed
   limit?: number
 }
 
 export function useVaultTimeseries() {
+  // console.log('fetching vault timeseries data with useVaultTimeseries hook')
   // Fetch APY data
   const [fetchApy, { data: apyData, loading: apyLoading, error: apyError }] =
     useLazyQuery<{ timeseries: TimeseriesDataPoint[] }, TimeseriesParams>(
@@ -27,13 +29,19 @@ export function useVaultTimeseries() {
     useLazyQuery<{ timeseries: TimeseriesDataPoint[] }, TimeseriesParams>(
       queryTVL,
     )
+  const [fetchPps, { data: ppsData, loading: ppsLoading, error: ppsError }] =
+    useLazyQuery<{ timeseries: TimeseriesDataPoint[] }, TimeseriesParams>(
+      queryPPS,
+    )
 
   return {
     fetchApy,
     fetchTvl,
+    fetchPps,
     apyData: apyData?.timeseries,
     tvlData: tvlData?.timeseries,
-    loading: apyLoading || tvlLoading,
-    error: apyError || tvlError,
+    ppsData: ppsData?.timeseries,
+    loading: apyLoading || tvlLoading || ppsLoading,
+    error: apyError || tvlError || ppsError,
   }
 }
