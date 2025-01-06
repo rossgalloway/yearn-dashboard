@@ -1,3 +1,6 @@
+//TODO: get the links working correctly
+//TODO: add constituent tokenized strategies to the layout
+
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'

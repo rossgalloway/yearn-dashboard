@@ -1,3 +1,8 @@
+//TODO: clear out console.logs
+//TODO: add filters back to select dropdown above search bar.
+//TODO: add vault info (chain and version) to the info about the vault
+//TODO: add vault type to filters (single asset, curve, etc.)
+
 'use client'
 
 import { useState, useEffect, useMemo, useCallback, useRef } from 'react'
