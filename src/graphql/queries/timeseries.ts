@@ -77,8 +77,18 @@ export const queryTVL = gql`
 `
 // label is 'pps' and component is 'humanized'
 export const queryPPS = gql`
-  query PPSquery($label: String!, $component: String, $address: String) {
-    timeseries(label: $label, component: $component, address: $address) {
+  query PPSquery(
+    $label: String!
+    $component: String
+    $address: String
+    $limit: Int
+  ) {
+    timeseries(
+      label: $label
+      component: $component
+      address: $address
+      limit: $limit
+    ) {
       chainId
       address
       label
