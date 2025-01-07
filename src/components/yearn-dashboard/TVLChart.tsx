@@ -96,8 +96,10 @@ export const TVLChart: React.FC<TVLChartProps> = ({
           {!hideTooltip && <ChartTooltip formatter={formatTooltipValue} />}
           <Bar
             dataKey="TVL"
-            fill={hideAxes ? 'transparent' : 'var(--color-value)'}
-            stroke={hideAxes ? 'var(--color-value)' : 'transparent'}
+            fill={'var(--color-value)'}
+            stroke={'transparent'}
+            // fill={hideAxes ? 'transparent' : 'var(--color-value)'}
+            // stroke={hideAxes ? 'var(--color-value)' : 'transparent'}
             radius={[4, 4, 0, 0]}
             isAnimationActive={false}
           />

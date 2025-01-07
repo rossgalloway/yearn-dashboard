@@ -13,7 +13,12 @@ import { TVLChart } from '@/components/yearn-dashboard/TVLChart'
 import { useVaults } from '@/hooks/useVaults'
 import { useVaultTimeseries } from '@/hooks/useVaultTimeseries'
 import { InfoIcon, TrendingUp, DollarSign } from 'lucide-react'
-import { formatUnixTimestamp } from '../lib/utils'
+import {
+  formatUnixTimestamp,
+  calculateSMA,
+  fillMissingDailyData,
+  getEarliestAndLatestTimestamps,
+} from '../lib/utils'
 import { TabsContent, Tabs, TabsList, TabsTrigger } from './ui/tabs'
 import {
   Card,
@@ -38,23 +43,6 @@ const timeframes = [
   { value: 'all', label: 'All Time' },
 ]
 
-// Helper function for SMA calculation
-const calculateSMA = (
-  data: number[],
-  windowSize: number = 15,
-): (number | null)[] => {
-  const sma: (number | null)[] = []
-
-  for (let i = 0; i < data.length; i++) {
-    const start = Math.max(0, i - windowSize + 1)
-    const windowData = data.slice(start, i + 1)
-    const average =
-      windowData.reduce((sum, value) => sum + value, 0) / windowData.length
-    sma.push(average)
-  }
-  return sma
-}
-
 export default function YearnDashboard({
   version,
   chainId,
@@ -70,12 +58,6 @@ export default function YearnDashboard({
     loading: loadingVaults,
     error: errorVaults,
   } = useVaults()
-
-  // useEffect(() => {
-  //   if (vaults) {
-  //     console.log('retrieved vaults: ', vaults)
-  //   }
-  // }, [vaults])
 
   const availableChains: Record<number, string> = availableChainNumbers.reduce(
     (acc, chainId) => {
@@ -152,6 +134,7 @@ export default function YearnDashboard({
               address: selectedVault.address,
               label: 'pps',
               component: 'humanized',
+              limit: 1000,
             },
           }),
         ])
@@ -194,29 +177,40 @@ export default function YearnDashboard({
 
   useEffect(() => {
     if (timeseriesData) {
-      const rawValues = timeseriesData.apy.map((point) => point.value)
+      const { apy, tvl, pps } = timeseriesData
+
+      const { earliest, latest } = getEarliestAndLatestTimestamps(apy, tvl, pps)
+
+      // Fill each dataset
+      const apyFilled = fillMissingDailyData(apy, earliest, latest)
+      const tvlFilled = fillMissingDailyData(tvl, earliest, latest)
+      const ppsFilled = fillMissingDailyData(pps, earliest, latest)
+
+      // Apply SMA or other transformations.
+      const rawValues = apyFilled.map((p) => p.value ?? 0)
       const sma15Values = calculateSMA(rawValues, 15)
       const sma30Values = calculateSMA(rawValues, 30)
 
-      const transformedApyData = timeseriesData.apy.map((dataPoint, index) => ({
+      const transformedApyData = apyFilled.map((dataPoint, i) => ({
         date: formatUnixTimestamp(dataPoint.time),
-        APY: dataPoint.value * 100,
-        SMA15: sma15Values[index] !== null ? sma15Values[index]! * 100 : null,
-        SMA30: sma30Values[index] !== null ? sma30Values[index]! * 100 : null,
+        APY: dataPoint.value ? dataPoint.value * 100 : null,
+        SMA15: sma15Values[i] !== null ? sma15Values[i]! * 100 : null,
+        SMA30: sma30Values[i] !== null ? sma30Values[i]! * 100 : null,
       }))
 
       setApyChartData(transformedApyData)
-      //TODO: get asset to convert to USD
-      const transformedTvlData = timeseriesData.tvl.map((dataPoint) => ({
-        date: formatUnixTimestamp(dataPoint.time),
-        TVL: dataPoint.value,
-      }))
-      setTvlChartData(transformedTvlData)
-      const transformedPpsData = timeseriesData.pps.map((dataPoint) => ({
-        date: formatUnixTimestamp(dataPoint.time),
-        PPS: dataPoint.value,
-      }))
-      setPpsChartData(transformedPpsData)
+      setTvlChartData(
+        tvlFilled.map((dataPoint) => ({
+          date: formatUnixTimestamp(dataPoint.time),
+          TVL: dataPoint.value ?? null,
+        })),
+      )
+      setPpsChartData(
+        ppsFilled.map((dataPoint) => ({
+          date: formatUnixTimestamp(dataPoint.time),
+          PPS: dataPoint.value ?? null,
+        })),
+      )
     }
   }, [timeseriesData])
 
@@ -427,7 +421,7 @@ export default function YearnDashboard({
                             chartData={apyChartData}
                             timeframe={tf.value}
                           />
-                          <div className="absolute inset-0 p-6 pt-0 opacity-20 h-[400px] pointer-events-none">
+                          <div className="absolute inset-0 p-6 pt-0 opacity-10 h-[400px] pointer-events-none">
                             {/* Ghosted TVL chart */}
                             <TVLChart
                               chartData={tvlChartData}
@@ -494,6 +488,12 @@ export default function YearnDashboard({
                               timeframe={tf.value}
                               hideAxes
                               hideTooltip
+                            />
+                          </div>
+                          <div className="absolute inset-0 p-6 pt-0 opacity-10 h-[400px] pointer-events-none">
+                            <TVLChart
+                              chartData={tvlChartData}
+                              timeframe={tf.value}
                             />
                           </div>
                           {/* Render APY chart */}

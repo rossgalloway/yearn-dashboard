@@ -43,7 +43,7 @@ export interface TimeseriesDataPoint {
   component?: string // Optional, as it's not present in TVL data points
   period: string
   time: string
-  value: number
+  value: number | null
 }
 
 export interface Timeseries {
