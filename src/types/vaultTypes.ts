@@ -34,6 +34,9 @@ export type Vault = {
   }
   strategies: string
   vaultType: string
+  apy: {
+    weeklyNet: number
+  }
 }
 
 export interface TimeseriesDataPoint {
@@ -46,12 +49,19 @@ export interface TimeseriesDataPoint {
   value: number | null
 }
 
+export interface strategy {
+  address: string
+  name?: string | null
+  apr?: number | null
+}
+
 export interface Timeseries {
   address: string
   chainId: number
   apy: TimeseriesDataPoint[]
   tvl: TimeseriesDataPoint[]
   pps: TimeseriesDataPoint[]
+  strategies: strategy[]
 }
 
 export type TimePeriod = '7d' | '30d' | '90d' | '180d' | '1y' | 'all'

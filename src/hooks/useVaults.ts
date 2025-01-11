@@ -26,6 +26,8 @@ export function useVaults(): UseVaultsReturn {
 
   const availableChains = getAvailableChains(yearnVaults || [])
 
+  console.log('vaults', yearnVaults)
+
   return {
     vaults: yearnVaults,
     availableChains,

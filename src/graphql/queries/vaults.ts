@@ -40,6 +40,17 @@ export const GET_VAULTS = gql`
       }
       strategies
       vaultType
+      apy {
+        weeklyNet
+      }
+      debts {
+        strategy
+        currentDebt
+        maxDebt
+        maxDebtUsd
+        targetDebtRatio
+        maxDebtRatio
+      }
     }
   }
 `

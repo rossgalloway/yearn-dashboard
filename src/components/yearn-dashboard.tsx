@@ -1,10 +1,16 @@
 //TODO: get the links working correctly
 //TODO: add constituent tokenized strategies to the layout
+//TODO: add error/404 when vault not found. right now it defaults to the select overlay.
 
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
-import type { Vault, TimeseriesDataPoint, Timeseries } from '@/types/vaultTypes'
+import type {
+  Vault,
+  TimeseriesDataPoint,
+  Timeseries,
+  strategy as Strategy,
+} from '@/types/vaultTypes'
 import { VaultSelectorFilter } from '@/components/yearn-dashboard/VaultSelectorFilter'
 import { MetricsCard } from '@/components/yearn-dashboard/MetricsCard'
 import { APYChart } from '@/components/yearn-dashboard/APYChart'
@@ -79,6 +85,7 @@ export default function YearnDashboard({
     apy: [],
     tvl: [],
     pps: [],
+    strategies: [],
   })
 
   //this fetches the queries to be executed on demand.
@@ -146,6 +153,22 @@ export default function YearnDashboard({
           tvlData?.map(({ chainId, address, ...rest }) => rest) || []
         const cleanPpsData: TimeseriesDataPoint[] =
           ppsData?.map(({ address, ...rest }) => rest) || []
+        const strategies: Strategy[] = []
+        const strategyAddresses =
+          selectedVault.strategies as unknown as string[]
+        // Iterate over strategyAddresses to create Strategy objects
+        strategyAddresses.forEach((address) => {
+          const strategy: Strategy = { address } // Create a new Strategy object with the address
+
+          // Find the matching vault to get the strategy name
+          const matchingVault = vaults!.find((v) => v.address.includes(address))
+          if (matchingVault) {
+            strategy.name = matchingVault.name // Add the name to the strategy object
+            strategy.apr = matchingVault.apy.weeklyNet // Add the APR to the strategy object
+          }
+
+          strategies.push(strategy) // Push the strategy object to the strategies array
+        })
 
         // Combine the cleaned data
         const combinedData: Timeseries = {
@@ -154,6 +177,7 @@ export default function YearnDashboard({
           apy: cleanApyData,
           tvl: cleanTvlData,
           pps: cleanPpsData,
+          strategies: strategies,
         }
 
         setTimeseriesData(combinedData)
@@ -506,6 +530,25 @@ export default function YearnDashboard({
             </TabsContent>
           ))}
         </TimeframeTabs>
+        <Card>
+          <CardHeader>
+            <CardTitle>Strategies</CardTitle>
+            <CardDescription>
+              <div className="grid grid-cols-1 gap-4">
+                <div className="flex flex-row gap-4 items-center">
+                  <InfoIcon className="h-4 w-4 text-muted-foreground" />
+                  <div className="text-sm text-muted-foreground">
+                    Strategies are the underlying mechanisms that the vault uses
+                    to generate yield.
+                  </div>
+                </div>
+              </div>
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            {/* new card for every entry in timeseriesData.strategies  */}
+          </CardContent>
+        </Card>
       </div>
     </div>
   )
