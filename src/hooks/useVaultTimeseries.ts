@@ -12,7 +12,7 @@ export type TimeseriesParams = {
   chainId?: number
   address: string
   label: 'apy-bwd-delta-pps' | 'tvl' | 'pps' // Add more labels as needed
-  component?: 'weeklyNet' | 'close' | 'humanized' // Add more components as needed
+  component?: 'net' | 'close' | 'humanized' // Add more components as needed
   limit?: number
 }
 
