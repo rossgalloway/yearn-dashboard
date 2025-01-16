@@ -124,7 +124,7 @@ export default function YearnDashboard({
               chainId: selectedVault.chainId,
               address: selectedVault.address,
               label: 'apy-bwd-delta-pps',
-              component: 'weeklyNet',
+              component: 'net',
               limit: 1000,
             },
           }),
@@ -363,7 +363,8 @@ export default function YearnDashboard({
             title="Raw Current APY"
             icon={<TrendingUp className="h-4 w-4 text-muted-foreground" />}
             value={
-              apyChartData.length > 0
+              apyChartData.length > 0 &&
+              apyChartData[apyChartData.length - 1].APY !== null // added null check
                 ? apyChartData[apyChartData.length - 1].APY.toFixed(2) + '%'
                 : 'N/A'
             }
